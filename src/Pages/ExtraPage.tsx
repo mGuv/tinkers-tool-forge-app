@@ -13,7 +13,7 @@ class ExtraPage extends Page<PageProps, PageState>
     public render(): JSX.Element {
         return (
             <div>
-                <h1>Handle Page</h1>
+                <h1>Extra Page</h1>
                 <table>
                     <thead>
                         <tr>

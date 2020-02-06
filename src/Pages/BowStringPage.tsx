@@ -10,15 +10,23 @@ class BowStringPage extends Page<PageProps, PageState>
         super(props, (m:Material) => {return m.BowString !== undefined});
     }
 
+    private sortByModifier(a:Material, b:Material):number {
+        if(a.BowString?.Modifier === b.BowString?.Modifier) {
+            return 0;
+        }
+
+        return (a.BowString?.Modifier < b.BowString?.Modifier) ? 1 : -1;
+    }
+
     public render(): JSX.Element {
         return (
             <div>
-                <h1>Shaft Page</h1>
+                <h1>Bowstring Page</h1>
                 <table>
                     <thead>
                         <tr>
-                            <th>Material</th>
-                            <th>Modifier</th>                         
+                            <th onClick={() => {this.orderMaterials(this.sortByName)}}>Material</th>
+                            <th onClick={() => {this.orderMaterials(this.sortByModifier)}}>Modifier</th>                         
                         </tr>
                     </thead>
                     <tbody>
