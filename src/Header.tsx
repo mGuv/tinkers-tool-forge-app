@@ -3,11 +3,20 @@ import { Link } from 'react-router-dom'
 
 import styles from './Header.module.css';
 
+interface MenuItemProps {
+  title: string
+  to: string
+}
+
+const MenuItem: React.FunctionComponent<MenuItemProps> = ({title, to}) => (
+  <li><Link to={to}>{title}</Link></li>
+)
+
 const Menu: React.FunctionComponent = () => (
   <nav>
     <ul>
-      <li><Link to="/bow">Bow</Link></li>
-      <li><Link to="/head">Head</Link></li>
+      <MenuItem title="Bow" to="/bow"/>
+      <MenuItem title="Head" to="/head"/>
     </ul>
   </nav>
 )
@@ -15,5 +24,6 @@ const Menu: React.FunctionComponent = () => (
 export const Header: React.FunctionComponent = () => (
   <div className={styles.header}>
     <Menu />
+    mGuv's Tinker Helper
   </div>
 )
