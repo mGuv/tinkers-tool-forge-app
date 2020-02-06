@@ -40,9 +40,6 @@ class BowPage extends Page<PageProps, PageState>
         return (
             <div>
                 <h1>Bow Page</h1>
-                <BowLimb materialColor="#FF0000FF"/>
-                <PickaxeHead materialColor="#00FF00FF"/>
-                <PickaxeHead materialColor="#00FF0020"/>
                 <table>
                     <thead>
                         <tr>
