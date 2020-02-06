@@ -14,10 +14,6 @@ interface State {
   materials: Material[],
 }
 
-
-
-
-
 class App extends React.PureComponent<Props, State> {
 
   public constructor(props: Props) {
@@ -38,6 +34,9 @@ class App extends React.PureComponent<Props, State> {
           </Route>
           <Route path="/head">
             <HeadPage allMaterials={this.state.materials}/>
+          </Route>
+          <Route path="/tool-builder">
+            <ToolBuilderPage allMaterials={this.state.materials}/>
           </Route>
           <Route path="/">
             <Redirect to="/bow"/>
