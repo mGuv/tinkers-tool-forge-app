@@ -9,6 +9,7 @@ import BowString from './BowString';
 class Material
 {
     public readonly Name:string;
+    public readonly Color:string;
     public readonly Handle?:Handle;
     public readonly Head?:Head;
     public readonly Bow?:Bow;
@@ -20,9 +21,10 @@ class Material
     public IsVisible:boolean;
     
 
-    public constructor(name:string, handle?:Handle, head?:Head, bow?:Bow, shaft?:Shaft, extra?:Extra, fletching?:Fletching, bowString?:BowString)
+    public constructor(name:string, color:string, handle?:Handle, head?:Head, bow?:Bow, shaft?:Shaft, extra?:Extra, fletching?:Fletching, bowString?:BowString)
     {
         this.Name = name;
+        this.Color = color;
         this.Handle = handle;
         this.Head = head;
         this.Bow = bow;

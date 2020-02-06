@@ -11,7 +11,7 @@ export default class BasePart extends React.PureComponent<InternalPartProps> {
             ...this.props.style,
             height: '128px',
             width: '128px',
-            backgroundColor: this.props.materialColor,
+            backgroundColor: '#' + this.props.materialColor,
             backgroundBlendMode: 'multiply',
             backgroundImage: 'url("/textures/parts/' + this.props.partName + '.png")',
             WebkitMaskImage: 'url("/textures/parts/' + this.props.partName + '.png")'

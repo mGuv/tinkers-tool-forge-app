@@ -14,9 +14,15 @@ const MenuItem: React.FunctionComponent<MenuItemProps> = ({title, to}) => (
 
 const Menu: React.FunctionComponent = () => (
   <nav>
+    <h3>Parts</h3>
     <ul>
       <MenuItem title="Bow" to="/bow"/>
       <MenuItem title="Head" to="/head"/>
+    </ul>
+
+    <h3>Utilities</h3>
+    <ul>
+      <li><Link to="/tool-builder">Tool Builder</Link></li>
     </ul>
   </nav>
 )

@@ -5,6 +5,7 @@ import BowPage from './Pages/BowPage';
 import {HashRouter as Router, Switch, Route, Redirect} from 'react-router-dom';
 import HeadPage from './Pages/HeadPage';
 import {Header} from './Header';
+import ToolBuilderPage from './Pages/ToolBuilderPage';
 
 interface Props {
 

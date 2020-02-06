@@ -78,7 +78,7 @@ class MaterialService
                 );
             }
 
-            const newMat:Material = new Material(prop, newHandle, newHead, newBow, newShaft, newExtra, newFletching, newBowString);
+            const newMat:Material = new Material(prop, currentThing['colour'], newHandle, newHead, newBow, newShaft, newExtra, newFletching, newBowString);
             this.allMaterials.push(newMat);
         }
 
