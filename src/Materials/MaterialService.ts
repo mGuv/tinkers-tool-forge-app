@@ -6,6 +6,7 @@ import Bow from './Bow';
 import Shaft from './Shaft';
 import Extra from './Extra';
 import Fletching from './Fletching';
+import BowString from './BowString';
 
 class MaterialService
 {
@@ -28,6 +29,7 @@ class MaterialService
             let newShaft:Shaft|undefined = undefined;
             let newExtra:Extra|undefined = undefined;
             let newFletching:Fletching|undefined = undefined;
+            let newBowString:BowString|undefined = undefined;
 
             if(typeof currentThing['head'] !== 'undefined') {
                 newHead = new Head(
@@ -70,7 +72,13 @@ class MaterialService
                 );
             }
 
-            const newMat:Material = new Material(prop, newHandle, newHead, newBow, newShaft, newExtra, newFletching);
+            if(typeof currentThing['bowString'] !== undefined) {
+                newBowString = new BowString(
+                    Number.parseFloat(currentThing['bowString']['modifier'])
+                );
+            }
+
+            const newMat:Material = new Material(prop, newHandle, newHead, newBow, newShaft, newExtra, newFletching, newBowString);
             this.allMaterials.push(newMat);
         }
 

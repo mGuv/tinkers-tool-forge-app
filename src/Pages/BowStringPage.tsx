@@ -4,10 +4,10 @@ import Page from './Page';
 import PageProps from './PageProps';
 import PageState from './PageState';
 
-class ShaftPage extends Page<PageProps, PageState>
+class BowStringPage extends Page<PageProps, PageState>
 {
     public constructor(props: PageProps) {
-        super(props, (m:Material) => {return m.Shaft !== undefined});
+        super(props, (m:Material) => {return m.BowString !== undefined});
     }
 
     public render(): JSX.Element {
@@ -18,8 +18,7 @@ class ShaftPage extends Page<PageProps, PageState>
                     <thead>
                         <tr>
                             <th>Material</th>
-                            <th>Bonus Ammo</th>
-                            <th>Modifier</th>                            
+                            <th>Modifier</th>                         
                         </tr>
                     </thead>
                     <tbody>
@@ -28,8 +27,7 @@ class ShaftPage extends Page<PageProps, PageState>
                                     return (
                                         <tr>
                                             <td>{m.Name}</td>
-                                            <td>{m.Shaft?.BonusAmmo}</td>
-                                            <td>{m.Shaft?.Modifier}</td>
+                                            <td>{m.BowString?.Modifier}</td>                                            
                                         </tr>
                                     );
                             })
@@ -41,4 +39,4 @@ class ShaftPage extends Page<PageProps, PageState>
     }
 }
 
-export default ShaftPage;
+export default BowStringPage;
