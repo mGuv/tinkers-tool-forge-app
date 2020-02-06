@@ -12,6 +12,30 @@ class BowPage extends Page<PageProps, PageState>
         super(props, (m:Material) => {return m.Bow !== undefined});
     }
 
+    private sortByDrawSpeed(a:Material, b:Material):number {
+        if(a.Bow?.DrawSpeed === b.Bow?.DrawSpeed) {
+            return 0;
+        }
+
+        return (a.Bow?.DrawSpeed < b.Bow?.DrawSpeed) ? 1 : -1;
+    }
+
+    private sortByDamage(a:Material, b:Material):number {
+        if(a.Bow?.BonusDamage === b.Bow?.BonusDamage) {
+            return 0;
+        }
+
+        return (a.Bow?.BonusDamage < b.Bow?.BonusDamage) ? 1 : -1;
+    }
+
+    private sortByRange(a:Material, b:Material):number {
+        if(a.Bow?.Range === b.Bow?.Range) {
+            return 0;
+        }
+
+        return (a.Bow?.Range < b.Bow?.Range) ? 1 : -1;
+    }
+
     public render(): JSX.Element {
         return (
             <div>
@@ -22,10 +46,10 @@ class BowPage extends Page<PageProps, PageState>
                 <table>
                     <thead>
                         <tr>
-                            <th>Material</th>
-                            <th>Draw Speed</th>
-                            <th>Damage</th>
-                            <th>Range</th>
+                            <th onClick={() => {this.orderMaterials(this.sortByName)}}>Material</th>
+                            <th onClick={() => {this.orderMaterials(this.sortByDrawSpeed)}}>Draw Speed</th>
+                            <th onClick={() => {this.orderMaterials(this.sortByDamage)}}>Damage</th>
+                            <th onClick={() => {this.orderMaterials(this.sortByRange)}}>Range</th>
                         </tr>
                     </thead>
                     <tbody>

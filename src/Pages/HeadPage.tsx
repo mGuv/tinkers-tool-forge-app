@@ -49,7 +49,7 @@ class HeadPage extends Page<PageProps, PageState>
                 <table>
                     <thead>
                         <tr>
-                            <th>Material</th>
+                            <th onClick={() => {this.orderMaterials(this.sortByName)}}>Material</th>
                             <th onClick={() => {this.orderMaterials(this.sortByAttack)}}>Attack</th>
                             <th onClick={() => {this.orderMaterials(this.sortByDurability)}}>Durability</th>
                             <th onClick={() => {this.orderMaterials(this.sortByHarvestLevel)}}>Harvest Level</th>

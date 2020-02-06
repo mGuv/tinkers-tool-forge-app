@@ -33,6 +33,14 @@ abstract class Page<TProps extends PageProps, TState extends PageState> extends 
 
         this.lastSort = sortFunction;
     }
+    
+    protected sortByName(a:Material, b:Material):number {
+        if(a.Name === b.Name) {
+            return 0;
+        }
+
+        return a.Name < b.Name ? 1 : -1;
+    }
 }
 
 
