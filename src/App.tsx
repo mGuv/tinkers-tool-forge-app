@@ -2,9 +2,10 @@ import React from 'react';
 import MaterialService from './Materials/MaterialService';
 import Material from './Materials/Material';
 import BowPage from './Pages/BowPage';
-import {HashRouter as Router, Switch, Route, Redirect, Link} from 'react-router-dom';
+import {HashRouter as Router, Switch, Route, Redirect} from 'react-router-dom';
 import PageProps from './Pages/PageProps';
 import HeadPage from './Pages/HeadPage';
+import {Header} from './Header';
 
 interface Props {
 
@@ -14,14 +15,9 @@ interface State {
   materials: Material[],
 }
 
-const Menu: React.FunctionComponent = () => (
-  <nav>
-    <ol>
-      <li><Link to="/bow">Bow</Link></li>
-      <li><Link to="/head">Head</Link></li>
-    </ol>
-  </nav>
-)
+
+
+
 
 class App extends React.PureComponent<Props, State> {
 
@@ -42,7 +38,7 @@ class App extends React.PureComponent<Props, State> {
   public render(): JSX.Element {
     return (
       <Router>
-        <Menu />
+        <Header />
         <Switch>
           <Route path="/bow">
             <BowPage allMaterials={this.state.materials}/>
