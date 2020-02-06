@@ -5,10 +5,10 @@ import styles from './Header.module.css';
 
 const Menu: React.FunctionComponent = () => (
   <nav>
-    <ol>
+    <ul>
       <li><Link to="/bow">Bow</Link></li>
       <li><Link to="/head">Head</Link></li>
-    </ol>
+    </ul>
   </nav>
 )
 
