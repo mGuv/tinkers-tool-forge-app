@@ -4,6 +4,7 @@ import Bow from './Bow';
 import Shaft from './Shaft';
 import Extra from './Extra';
 import Fletching from './Fletching';
+import BowString from './BowString';
 
 class Material
 {
@@ -14,11 +15,12 @@ class Material
     public readonly Shaft?:Shaft;
     public readonly Extra?:Extra;
     public readonly Fletching?:Fletching;
+    public readonly BowString?:BowString;
 
     public IsVisible:boolean;
     
 
-    public constructor(name:string, handle?:Handle, head?:Head, bow?:Bow, shaft?:Shaft, extra?:Extra, fletching?:Fletching)
+    public constructor(name:string, handle?:Handle, head?:Head, bow?:Bow, shaft?:Shaft, extra?:Extra, fletching?:Fletching, bowString?:BowString)
     {
         this.Name = name;
         this.Handle = handle;
@@ -27,6 +29,7 @@ class Material
         this.Shaft = shaft;
         this.Extra = extra;
         this.Fletching = fletching;
+        this.BowString=bowString;
         this.IsVisible = true;
     }
 
