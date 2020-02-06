@@ -1,4 +1,3 @@
-import CObject from '../CObject';
 import Handle from './Handle';
 import Head from './Head';
 import Bow from './Bow';
@@ -6,7 +5,7 @@ import Shaft from './Shaft';
 import Extra from './Extra';
 import Fletching from './Fletching';
 
-class Material extends CObject
+class Material
 {
     public readonly Name:string;
     public readonly Handle?:Handle;
@@ -21,7 +20,6 @@ class Material extends CObject
 
     public constructor(name:string, handle?:Handle, head?:Head, bow?:Bow, shaft?:Shaft, extra?:Extra, fletching?:Fletching)
     {
-        super();
         this.Name = name;
         this.Handle = handle;
         this.Head = head;

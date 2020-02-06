@@ -1,5 +1,4 @@
 import React from 'react';
-import "./App.scss";
 import MaterialService from './Materials/MaterialService';
 import Material from './Materials/Material';
 import BowPage from './Pages/BowPage';
