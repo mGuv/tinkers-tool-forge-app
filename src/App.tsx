@@ -3,7 +3,6 @@ import MaterialService from './Materials/MaterialService';
 import Material from './Materials/Material';
 import BowPage from './Pages/BowPage';
 import {HashRouter as Router, Switch, Route, Redirect} from 'react-router-dom';
-import PageProps from './Pages/PageProps';
 import HeadPage from './Pages/HeadPage';
 import {Header} from './Header';
 
@@ -21,18 +20,12 @@ interface State {
 
 class App extends React.PureComponent<Props, State> {
 
-  private pages:React.ComponentType<PageProps>[];
-
   public constructor(props: Props) {
     super(props);
-    this.pages=[
-      BowPage,
-      HeadPage
-    ];
+
     this.state = {
       materials: MaterialService.GetInstance().GetAll(),
     };
-
   }
 
   public render(): JSX.Element {
