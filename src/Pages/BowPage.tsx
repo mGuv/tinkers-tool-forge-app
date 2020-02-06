@@ -4,6 +4,7 @@ import Page from './Page';
 import PageProps from './PageProps';
 import PageState from './PageState';
 import PickaxeHead from '../Parts/PickaxeHead';
+import BowLimb from '../Parts/BowLimb';
 
 class BowPage extends Page<PageProps, PageState>
 {
@@ -15,7 +16,7 @@ class BowPage extends Page<PageProps, PageState>
         return (
             <div>
                 <h1>Bow Page</h1>
-                <PickaxeHead materialColor="#FF0000FF"/>
+                <BowLimb materialColor="#FF0000FF"/>
                 <PickaxeHead materialColor="#00FF00FF"/>
                 <PickaxeHead materialColor="#00FF0020"/>
                 <table>
