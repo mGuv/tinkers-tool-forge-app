@@ -10,12 +10,14 @@ class HeadPage extends Page<PageProps, PageState>
         super(props, (m:Material) => {return m.Head !== undefined});
     }
 
-    /**
-     * public readonly Attack:number;
-    public readonly Durability:number;
-    public readonly HarvestLevel:number;
-    public readonly MiningSpeed:number;
-     */
+    private sortByAttack(a:Material, b:Material):number {
+        if(a.Head?.Attack === b.Head?.Attack) {
+            return 0;
+        }
+
+        return (a.Head?.Attack < b.Head?.Attack) ? 1 : -1;
+    }
+    
     public render(): JSX.Element {
         return (
             <div>
@@ -24,7 +26,7 @@ class HeadPage extends Page<PageProps, PageState>
                     <thead>
                         <tr>
                             <th>Material</th>
-                            <th>Attack</th>
+                            <th onClick={() => {this.orderMaterials(this.sortByAttack)}}>Attack</th>
                             <th>Durability</th>
                             <th>Harvest Level</th>
                             <th>Harvest Speed</th>
