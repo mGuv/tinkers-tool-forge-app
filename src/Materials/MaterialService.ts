@@ -72,7 +72,7 @@ class MaterialService
                 );
             }
 
-            if(typeof currentThing['bowString'] !== undefined) {
+            if(typeof currentThing['bowString'] !== 'undefined') {
                 newBowString = new BowString(
                     Number.parseFloat(currentThing['bowString']['modifier'])
                 );
