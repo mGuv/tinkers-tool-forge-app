@@ -1,0 +1,13 @@
+.columnHeader {
+  text-align: start;
+  border-bottom: 1px solid grey;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  cursor: pointer;
+  min-width: 125px;
+}
+
+.table tbody tr:nth-child(2n+1) {
+  background-color: rgb(238, 238, 238);
+}

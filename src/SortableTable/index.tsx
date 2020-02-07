@@ -1,5 +1,7 @@
 import React from 'react';
 
+import styles from './styles.module.css';
+
 interface SortableTableProps<T> {
   columnNames: (keyof T)[]
   data: T[]
@@ -21,7 +23,17 @@ function Rows<T>({rows, columnNames}: {rows: T[], columnNames: (keyof T)[]}) {
       </tr>
     )
   })
-  return <React.Fragment>{r}</React.Fragment>;
+  return <>{r}</>;
+}
+
+function SortingIndicator({reverse = false}) {
+  if (!reverse) {
+    return (<div>^</div>)
+  }
+  else
+  {
+    return (<div>v</div>)
+  }
 }
 
 class SortableTable<T> extends React.PureComponent<SortableTableProps<T>, SortableTableState<T>> {
@@ -50,10 +62,16 @@ class SortableTable<T> extends React.PureComponent<SortableTableProps<T>, Sortab
     });
 
     return (
-      <table>
+      <table className={styles.table}>
           <thead>
             <tr>
-                { this.props.columnNames.map(key => <th onClick={()=>this.sortBy(key)} key={key as string}>{key}</th>) }
+                { this.props.columnNames.map(key => 
+                  <th onClick={()=>this.sortBy(key)} key={key as string}>
+                    <div className={styles.columnHeader} >
+                      {key}
+                      {this.state.lastSort === key && <SortingIndicator reverse={this.state.reverse}/>}
+                    </div>
+                  </th>) }
             </tr>
           </thead>
           <tbody>
