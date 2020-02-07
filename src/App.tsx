@@ -30,7 +30,7 @@ class App extends React.PureComponent<Props, State> {
         <Header />
         <Switch>
           <Route path="/bow">
-            <BowPartList bowParts={this.state.materials.filter((m:Material)=>{return m.BowPart}).map((m:Material) => {return m.BowPart as BowPart})}/>
+            <BowPartList bowParts={this.state.materials.filter(m => m.BowPart).map(m => m.BowPart as BowPart)}/>
           </Route>
           <Route path="/">
             <Redirect to="/bow"/>

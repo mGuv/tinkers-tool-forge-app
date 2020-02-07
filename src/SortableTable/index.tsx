@@ -10,6 +10,20 @@ interface SortableTableState<T> {
   reverse: boolean
 }
 
+function Rows<T>({rows, columnNames}: {rows: T[], columnNames: (keyof T)[]}) {
+  let r = rows.map(row => {
+    let rowKey = row[columnNames[0]] as unknown as string
+    return (
+      <tr key={rowKey}>
+        {columnNames.map(key => 
+          <td key={key as string}>{row[key]}</td>
+        )}
+      </tr>
+    )
+  })
+  return <React.Fragment>{r}</React.Fragment>;
+}
+
 class SortableTable<T> extends React.PureComponent<SortableTableProps<T>, SortableTableState<T>> {
   constructor(props: SortableTableProps<T>) {
     super(props);
@@ -39,11 +53,11 @@ class SortableTable<T> extends React.PureComponent<SortableTableProps<T>, Sortab
       <table>
           <thead>
             <tr>
-                { this.props.columnNames.map(key => <th onClick={()=>this.sortBy(key)}>{key}</th>) }
+                { this.props.columnNames.map(key => <th onClick={()=>this.sortBy(key)} key={key as string}>{key}</th>) }
             </tr>
           </thead>
           <tbody>
-              { sortedData.map(row => <tr>{this.props.columnNames.map(key => <td>{row[key]}</td>)}</tr>) }
+            <Rows rows={sortedData} columnNames={this.props.columnNames} />
           </tbody>
       </table>
     )

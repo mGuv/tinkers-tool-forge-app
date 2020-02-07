@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 import styles from './Header.module.css';
 
@@ -9,7 +9,7 @@ interface MenuItemProps {
 }
 
 const MenuItem: React.FunctionComponent<MenuItemProps> = ({title, to}) => (
-  <li><Link to={to}>{title}</Link></li>
+  <li><NavLink activeClassName={styles.active} to={to}>{title}</NavLink></li>
 )
 
 const Menu: React.FunctionComponent = () => (

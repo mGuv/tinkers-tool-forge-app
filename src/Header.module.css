@@ -27,3 +27,7 @@
 .header nav ul a:hover {
   text-decoration: underline;
 }
+
+.header nav ul a.active {
+  font-weight: 700;
+}
