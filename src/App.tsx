@@ -36,31 +36,41 @@ class App extends React.PureComponent<Props, State> {
     };
   }
 
+  private hideMaterial(material:Material) {
+    const materials:Material[] = Array.from(this.state.materials);
+    materials.splice(materials.indexOf(material), 1);
+
+    this.setState({
+      ...this.state,
+      materials 
+    });
+  }
+
   public render(): JSX.Element {
     return (
       <Router>
         <Header />
         <Switch>
           <Route path="/bowLimbs">
-            <BowPartList bowParts={this.state.materials.filter(m => m.BowPart).map(m => m.BowPart as BowPart)}/>
+            <BowPartList hideMaterial={this.hideMaterial.bind(this)} bowParts={this.state.materials.filter(m => m.BowPart).map(m => m.BowPart as BowPart)}/>
           </Route>
           <Route path="/bowStrings">
-            <BowStringList bowStringParts={this.state.materials.filter(m => m.BowStringPart).map(m => m.BowStringPart as BowStringPart)}/>
+            <BowStringList hideMaterial={this.hideMaterial.bind(this)} bowStringParts={this.state.materials.filter(m => m.BowStringPart).map(m => m.BowStringPart as BowStringPart)}/>
           </Route>
           <Route path="/extras">
-            <ExtraList extraParts={this.state.materials.filter(m => m.ExtraPart).map(m => m.ExtraPart as ExtraPart)}/>
+            <ExtraList hideMaterial={this.hideMaterial.bind(this)} extraParts={this.state.materials.filter(m => m.ExtraPart).map(m => m.ExtraPart as ExtraPart)}/>
           </Route>
           <Route path="/fletchings">
-            <FletchingList fletchingParts={this.state.materials.filter(m => m.FletchingPart).map(m => m.FletchingPart as FletchingPart)}/>
+            <FletchingList hideMaterial={this.hideMaterial.bind(this)} fletchingParts={this.state.materials.filter(m => m.FletchingPart).map(m => m.FletchingPart as FletchingPart)}/>
           </Route>
           <Route path="/handles">
-            <HandleList handleParts={this.state.materials.filter(m => m.HandlePart).map(m => m.HandlePart as HandlePart)}/>
+            <HandleList hideMaterial={this.hideMaterial.bind(this)} handleParts={this.state.materials.filter(m => m.HandlePart).map(m => m.HandlePart as HandlePart)}/>
           </Route>
           <Route path="/heads">
-            <HeadList headParts={this.state.materials.filter(m => m.HeadPart).map(m => m.HeadPart as HeadPart)}/>
+            <HeadList hideMaterial={this.hideMaterial.bind(this)} headParts={this.state.materials.filter(m => m.HeadPart).map(m => m.HeadPart as HeadPart)}/>
           </Route>
           <Route path="/shafts">
-            <ShaftList shaftParts={this.state.materials.filter(m => m.ShaftPart).map(m => m.ShaftPart as ShaftPart)}/>
+            <ShaftList hideMaterial={this.hideMaterial.bind(this)} shaftParts={this.state.materials.filter(m => m.ShaftPart).map(m => m.ShaftPart as ShaftPart)}/>
           </Route>
           <Route path="/">
             <Redirect to="/bowLimbs"/>
