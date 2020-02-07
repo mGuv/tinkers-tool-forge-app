@@ -1,10 +1,10 @@
 import React from 'react';
 import MaterialService from './Materials/MaterialService';
 import Material from './Materials/Material';
-import BowPage from './Pages/BowPage';
 import {HashRouter as Router, Switch, Route, Redirect} from 'react-router-dom';
 import {Header} from './Header';
 import BowPart from './Materials/Parts/BowPart';
+import BowPartList from './PartViewer/BowPartList';
 
 interface Props {
 
@@ -30,7 +30,7 @@ class App extends React.PureComponent<Props, State> {
         <Header />
         <Switch>
           <Route path="/bow">
-            <BowPage bowParts={this.state.materials.filter((m:Material)=>{return m.BowPart}).map((m:Material) => {return m.BowPart as BowPart})}/>
+            <BowPartList bowParts={this.state.materials.filter((m:Material)=>{return m.BowPart}).map((m:Material) => {return m.BowPart as BowPart})}/>
           </Route>
           <Route path="/">
             <Redirect to="/bow"/>

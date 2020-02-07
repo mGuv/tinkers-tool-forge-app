@@ -6,7 +6,7 @@ interface Props {
     bowParts: BowPart[]
 }
 
-const BowPage: React.FunctionComponent<Props> = ({ bowParts }) => (
+const BowPartList: React.FunctionComponent<Props> = ({ bowParts }) => (
     <div>
         <h1>Bow Page</h1>
         <SortablePage columnNames={["Name", "Draw Speed", "Damage", "Range"]} data={bowParts.map(bowPart => ({
@@ -18,4 +18,4 @@ const BowPage: React.FunctionComponent<Props> = ({ bowParts }) => (
     </div>
 )
 
-export default BowPage;
+export default BowPartList;
