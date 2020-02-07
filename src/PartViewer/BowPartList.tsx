@@ -8,7 +8,7 @@ interface Props {
 
 const BowPartList: React.FunctionComponent<Props> = ({ bowParts }) => (
     <div>
-        <h1>Bow Page</h1>
+        <h1>Bow Limbs</h1>
         <SortableTable columnNames={["Name", "Draw Speed", "Damage", "Range"]} data={bowParts.map(bowPart => ({
             Name: bowPart.Material.Name,
             "Draw Speed": bowPart.DrawSpeed,
