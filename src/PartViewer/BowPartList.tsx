@@ -1,5 +1,5 @@
 import React from 'react';
-import SortablePage from '../SortableTable/SortableTable';
+import SortableTable from '../SortableTable';
 import BowPart from '../Materials/Parts/BowPart';
 
 interface Props {
@@ -9,7 +9,7 @@ interface Props {
 const BowPartList: React.FunctionComponent<Props> = ({ bowParts }) => (
     <div>
         <h1>Bow Page</h1>
-        <SortablePage columnNames={["Name", "Draw Speed", "Damage", "Range"]} data={bowParts.map(bowPart => ({
+        <SortableTable columnNames={["Name", "Draw Speed", "Damage", "Range"]} data={bowParts.map(bowPart => ({
             Name: bowPart.Material.Name,
             "Draw Speed": bowPart.DrawSpeed,
             Damage: bowPart.BonusDamage,
