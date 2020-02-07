@@ -1,17 +1,17 @@
 import React from 'react';
 
-interface SortablePageProps<T> {
+interface SortableTableProps<T> {
   columnNames: (keyof T)[]
   data: T[]
 }
 
-interface SortablePageState<T> {
+interface SortableTableState<T> {
   lastSort: keyof T
   reverse: boolean
 }
 
-class SortablePage<T> extends React.PureComponent<SortablePageProps<T>, SortablePageState<T>> {
-  constructor(props: SortablePageProps<T>) {
+class SortableTable<T> extends React.PureComponent<SortableTableProps<T>, SortableTableState<T>> {
+  constructor(props: SortableTableProps<T>) {
     super(props);
     this.state = {
       lastSort: props.columnNames[0],
@@ -50,4 +50,4 @@ class SortablePage<T> extends React.PureComponent<SortablePageProps<T>, Sortable
   }
 }
 
-export default SortablePage;
+export default SortableTable;

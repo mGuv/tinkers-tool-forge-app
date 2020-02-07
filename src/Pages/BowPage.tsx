@@ -1,5 +1,5 @@
 import React from 'react';
-import SortablePage from './SortablePage';
+import SortablePage from '../SortableTable/SortableTable';
 import BowPart from '../Materials/Parts/BowPart';
 
 interface Props {
