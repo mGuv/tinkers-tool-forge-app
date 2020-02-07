@@ -1,0 +1,19 @@
+import Part from './Part';
+import Material from '../Material';
+
+class HeadPart extends Part {
+    public readonly Attack: number;
+    public readonly Durability: number;
+    public readonly HarvestLevel: number;
+    public readonly MiningSpeed: number;
+
+    public constructor(material: Material, attack: number, durability: number, harvestLevel: number, miningSpeed: number) {
+        super(material);
+        this.Attack = attack;
+        this.Durability = durability;
+        this.HarvestLevel = harvestLevel;
+        this.MiningSpeed = miningSpeed;
+    }
+}
+
+export default HeadPart;

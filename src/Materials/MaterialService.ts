@@ -1,93 +1,90 @@
 import Material from './Material';
 import apiResponse from './ApiResponse';
-import Handle from './Handle';
-import Head from './Head';
-import Bow from './Bow';
-import Shaft from './Shaft';
-import Extra from './Extra';
-import Fletching from './Fletching';
-import BowString from './BowString';
+import HandlePart from './Parts/HandlePart';
+import BowPart from './Parts/BowPart';
+import ShaftPart from './Parts/ShaftPart';
+import ExtraPart from './Parts/ExtraPart';
+import FletchingPart from './Parts/FletchingPart';
+import BowStringPart from './Parts/BowStringPart';
+import HeadPart from './Parts/HeadPart';
 
-class MaterialService
-{
+class MaterialService {
     /** Singleton of the service */
     private static instance: MaterialService;
 
-    private allMaterials:Material[];
+    private allMaterials: Material[];
 
-    public constructor()
-    {
+    public constructor() {
         // Parse that response 
         this.allMaterials = [];
 
-        for(var prop in apiResponse) {
-            var currentThing = apiResponse[prop];
+        for (var materialName in apiResponse) {
+            var rawMaterial = apiResponse[materialName];
 
-            let newHead:Head|undefined = undefined;
-            let newHandle:Handle|undefined = undefined;
-            let newBow:Bow|undefined = undefined;
-            let newShaft:Shaft|undefined = undefined;
-            let newExtra:Extra|undefined = undefined;
-            let newFletching:Fletching|undefined = undefined;
-            let newBowString:BowString|undefined = undefined;
+            const newMaterial: Material = new Material(materialName, rawMaterial['colour']);
 
-            if(typeof currentThing['head'] !== 'undefined') {
-                newHead = new Head(
-                    Number.parseFloat(currentThing['head']['attack']),
-                    Number.parseInt(currentThing['head']['durability']),
-                    Number.parseInt(currentThing['head']['harvestLevel']),
-                    Number.parseFloat(currentThing['head']['miningspeed'])
+            if (rawMaterial['head']) {
+                newMaterial.HeadPart = new HeadPart(
+                    newMaterial,
+                    Number.parseFloat(rawMaterial['head']['attack']),
+                    Number.parseInt(rawMaterial['head']['durability']),
+                    Number.parseInt(rawMaterial['head']['harvestLevel']),
+                    Number.parseFloat(rawMaterial['head']['miningspeed'])
                 );
             }
 
-            if(typeof currentThing['handle'] !== 'undefined') {
-                newHandle = new Handle(
-                    Number.parseInt(currentThing['handle']['durability']),
-                    Number.parseFloat(currentThing['handle']['modifier']),
+            if (rawMaterial['handle']) {
+                newMaterial.HandlePart = new HandlePart(
+                    newMaterial,
+                    Number.parseInt(rawMaterial['handle']['durability']),
+                    Number.parseFloat(rawMaterial['handle']['modifier']),
                 );
             }
 
-            if(typeof currentThing['bow'] !== 'undefined') {
-                newBow = new Bow(
-                    Number.parseFloat(currentThing['bow']['drawspeed']),
-                    Number.parseFloat(currentThing['bow']['range']),
-                    Number.parseFloat(currentThing['bow']['bonusDamage']));
+            if (rawMaterial['bow']) {
+                newMaterial.BowPart = new BowPart(
+                    newMaterial,
+                    Number.parseFloat(rawMaterial['bow']['drawspeed']),
+                    Number.parseFloat(rawMaterial['bow']['range']),
+                    Number.parseFloat(rawMaterial['bow']['bonusDamage']));
             }
 
-            if(typeof currentThing['shaft'] !== 'undefined') {
-                newShaft = new Shaft(
-                    Number.parseInt(currentThing['shaft']['bonusAmmo']),
-                    Number.parseFloat(currentThing['shaft']['modifier']));
+            if (rawMaterial['shaft']) {
+                newMaterial.ShaftPart = new ShaftPart(
+                    newMaterial,
+                    Number.parseInt(rawMaterial['shaft']['bonusAmmo']),
+                    Number.parseFloat(rawMaterial['shaft']['modifier']));
             }
 
-            if(typeof currentThing['extra'] !== 'undefined') {
-                newExtra = new Extra(
-                    Number.parseInt(currentThing['extra']['extraDurability']));
+            if (rawMaterial['extra']) {
+                newMaterial.ExtraPart = new ExtraPart(
+                    newMaterial,
+                    Number.parseInt(rawMaterial['extra']['extraDurability']));
             }
 
-            if(typeof currentThing['fletching'] !== 'undefined') {
-                newFletching = new Fletching(
-                    Number.parseFloat(currentThing['fletching']['accuracy']),
-                    Number.parseFloat(currentThing['fletching']['modifier']),
+            if (rawMaterial['fletching']) {
+                newMaterial.FletchingPart = new FletchingPart(
+                    newMaterial,
+                    Number.parseFloat(rawMaterial['fletching']['accuracy']),
+                    Number.parseFloat(rawMaterial['fletching']['modifier']),
                 );
             }
 
-            if(typeof currentThing['bowString'] !== 'undefined') {
-                newBowString = new BowString(
-                    Number.parseFloat(currentThing['bowString']['modifier'])
+            if (rawMaterial['bowString']) {
+                newMaterial.BowStringPart = new BowStringPart(
+                    newMaterial,
+                    Number.parseFloat(rawMaterial['bowString']['modifier'])
                 );
             }
 
-            const newMat:Material = new Material(prop, currentThing['colour'], newHandle, newHead, newBow, newShaft, newExtra, newFletching, newBowString);
-            this.allMaterials.push(newMat);
+            this.allMaterials.push(newMaterial);
         }
 
     }
 
-    public GetAll(): Material[]
-    {
+    public GetAll(): Material[] {
         return this.allMaterials;
-    } 
+    }
 
     /**
      * Gets the singleton instance of this class

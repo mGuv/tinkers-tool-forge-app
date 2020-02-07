@@ -1,43 +1,25 @@
-import Handle from './Handle';
-import Head from './Head';
-import Bow from './Bow';
-import Shaft from './Shaft';
-import Extra from './Extra';
-import Fletching from './Fletching';
-import BowString from './BowString';
+import BowPart from './Parts/BowPart';
+import BowStringPart from './Parts/BowStringPart';
+import ExtraPart from './Parts/ExtraPart';
+import FletchingPart from './Parts/FletchingPart';
+import HandlePart from './Parts/HandlePart';
+import HeadPart from './Parts/HeadPart';
+import ShaftPart from './Parts/ShaftPart';
+class Material {
+    public readonly Name: string;
+    public readonly Color: string;
 
-class Material
-{
-    public readonly Name:string;
-    public readonly Color:string;
-    public readonly Handle?:Handle;
-    public readonly Head?:Head;
-    public readonly Bow?:Bow;
-    public readonly Shaft?:Shaft;
-    public readonly Extra?:Extra;
-    public readonly Fletching?:Fletching;
-    public readonly BowString?:BowString;
+    public BowPart?: BowPart;
+    public BowStringPart?: BowStringPart;
+    public ExtraPart?: ExtraPart;
+    public FletchingPart?: FletchingPart;
+    public HandlePart?: HandlePart;
+    public HeadPart?: HeadPart;
+    public ShaftPart?: ShaftPart;
 
-    public IsVisible:boolean;
-    
-
-    public constructor(name:string, color:string, handle?:Handle, head?:Head, bow?:Bow, shaft?:Shaft, extra?:Extra, fletching?:Fletching, bowString?:BowString)
-    {
+    public constructor(name: string, color: string) {
         this.Name = name;
         this.Color = color;
-        this.Handle = handle;
-        this.Head = head;
-        this.Bow = bow;
-        this.Shaft = shaft;
-        this.Extra = extra;
-        this.Fletching = fletching;
-        this.BowString=bowString;
-        this.IsVisible = true;
-    }
-
-    public GetHashCode():string
-    {
-        return this.Name;
     }
 }
 

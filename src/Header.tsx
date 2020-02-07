@@ -16,13 +16,6 @@ const Menu: React.FunctionComponent = () => (
   <nav>
     <ul>
       <MenuItem title="Bow" to="/bow"/>
-      <MenuItem title="BowString" to="/bowstring"/>
-      <MenuItem title="Extra" to="/extra"/>
-      <MenuItem title="Fletching" to="/fletching"/>
-      <MenuItem title="Handle" to="/handle"/>
-      <MenuItem title="Head" to="/head"/>
-      <MenuItem title="Shaft" to="/shaft"/>
-      <MenuItem title="Tool Forge" to="/tool-builder"/>
     </ul>
   </nav>
 )
