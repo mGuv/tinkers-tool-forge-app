@@ -26,6 +26,7 @@ class MaterialService {
             if (rawMaterial['head']) {
                 newMaterial.HeadPart = new HeadPart(
                     newMaterial,
+                    rawMaterial['head']['traits'] ?? [],
                     Number.parseFloat(rawMaterial['head']['attack']),
                     Number.parseInt(rawMaterial['head']['durability']),
                     Number.parseInt(rawMaterial['head']['harvestLevel']),
@@ -36,6 +37,7 @@ class MaterialService {
             if (rawMaterial['handle']) {
                 newMaterial.HandlePart = new HandlePart(
                     newMaterial,
+                    rawMaterial['handle']['traits'] ?? [],
                     Number.parseInt(rawMaterial['handle']['durability']),
                     Number.parseFloat(rawMaterial['handle']['modifier']),
                 );
@@ -44,6 +46,7 @@ class MaterialService {
             if (rawMaterial['bow']) {
                 newMaterial.BowPart = new BowPart(
                     newMaterial,
+                    rawMaterial['bow']['traits'] ?? [],
                     Number.parseFloat(rawMaterial['bow']['drawspeed']),
                     Number.parseFloat(rawMaterial['bow']['range']),
                     Number.parseFloat(rawMaterial['bow']['bonusDamage']));
@@ -52,6 +55,7 @@ class MaterialService {
             if (rawMaterial['shaft']) {
                 newMaterial.ShaftPart = new ShaftPart(
                     newMaterial,
+                    rawMaterial['shaft']['traits'] ?? [],
                     Number.parseInt(rawMaterial['shaft']['bonusAmmo']),
                     Number.parseFloat(rawMaterial['shaft']['modifier']));
             }
@@ -59,12 +63,14 @@ class MaterialService {
             if (rawMaterial['extra']) {
                 newMaterial.ExtraPart = new ExtraPart(
                     newMaterial,
+                    rawMaterial['extra']['traits'] ?? [],
                     Number.parseInt(rawMaterial['extra']['extraDurability']));
             }
 
             if (rawMaterial['fletching']) {
                 newMaterial.FletchingPart = new FletchingPart(
                     newMaterial,
+                    rawMaterial['fletching']['traits'] ?? [],
                     Number.parseFloat(rawMaterial['fletching']['accuracy']),
                     Number.parseFloat(rawMaterial['fletching']['modifier']),
                 );
@@ -73,6 +79,7 @@ class MaterialService {
             if (rawMaterial['bowString']) {
                 newMaterial.BowStringPart = new BowStringPart(
                     newMaterial,
+                    rawMaterial['bowString']['traits'] ?? [],
                     Number.parseFloat(rawMaterial['bowString']['modifier'])
                 );
             }

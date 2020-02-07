@@ -9,10 +9,11 @@ interface Props {
 const ShaftList: React.FunctionComponent<Props> = ({ shaftParts }) => (
     <div>
         <h1>Shafts</h1>
-        <SortableTable columnNames={["Name", "Bonus Ammo", "Modifier"]} data={shaftParts.map(shaftPart => ({
+        <SortableTable columnNames={["Name", "Bonus Ammo", "Modifier", "Traits"]} data={shaftParts.map(shaftPart => ({
             Name: shaftPart.Material.Name,
             "Bonus Ammo": shaftPart.BonusAmmo,
-            Modifier: shaftPart.Modifier
+            Modifier: shaftPart.Modifier,
+            Traits: shaftPart.Traits.join(", ")
         }))} />
     </div>
 )

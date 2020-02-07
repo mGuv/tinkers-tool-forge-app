@@ -9,11 +9,12 @@ interface Props {
 const BowPartList: React.FunctionComponent<Props> = ({ bowParts }) => (
     <div>
         <h1>Bow Limbs</h1>
-        <SortableTable columnNames={["Name", "Draw Speed", "Damage", "Range"]} data={bowParts.map(bowPart => ({
+        <SortableTable columnNames={["Name", "Draw Speed", "Damage", "Range", "Traits"]} data={bowParts.map(bowPart => ({
             Name: bowPart.Material.Name,
             "Draw Speed": bowPart.DrawSpeed,
             Damage: bowPart.BonusDamage,
-            Range: bowPart.Range
+            Range: bowPart.Range,
+            Traits: bowPart.Traits.join(", ")
         }))} />
     </div>
 )

@@ -9,12 +9,13 @@ interface Props {
 const HeadList: React.FunctionComponent<Props> = ({ headParts }) => (
     <div>
         <h1>Heads</h1>
-        <SortableTable columnNames={["Name", "Attack", "Durability", "Harvest Level", "Harvest Speed"]} data={headParts.map(headPart => ({
+        <SortableTable columnNames={["Name", "Attack", "Durability", "Harvest Level", "Harvest Speed", "Traits"]} data={headParts.map(headPart => ({
             Name: headPart.Material.Name,
             Attack: headPart.Attack,
             Durability: headPart.Durability,
             "Harvest Level": headPart.HarvestLevel,
-            "Harvest Speed": headPart.MiningSpeed
+            "Harvest Speed": headPart.MiningSpeed,
+            Traits: headPart.Traits.join(", ")
         }))} />
     </div>
 )

@@ -9,9 +9,10 @@ interface Props {
 const BowStringList: React.FunctionComponent<Props> = ({ bowStringParts }) => (
     <div>
         <h1>Bow Strings</h1>
-        <SortableTable columnNames={["Name", "Modifier"]} data={bowStringParts.map(bowStringPart => ({
+        <SortableTable columnNames={["Name", "Modifier", "Traits"]} data={bowStringParts.map(bowStringPart => ({
             Name: bowStringPart.Material.Name,
-            Modifier: bowStringPart.Modifier
+            Modifier: bowStringPart.Modifier,
+            Traits: bowStringPart.Traits.join(", ")
         }))} />
     </div>
 )

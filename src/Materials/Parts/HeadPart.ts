@@ -7,8 +7,8 @@ class HeadPart extends Part {
     public readonly HarvestLevel: number;
     public readonly MiningSpeed: number;
 
-    public constructor(material: Material, attack: number, durability: number, harvestLevel: number, miningSpeed: number) {
-        super(material);
+    public constructor(material: Material, traits: string[], attack: number, durability: number, harvestLevel: number, miningSpeed: number) {
+        super(material, traits);
         this.Attack = attack;
         this.Durability = durability;
         this.HarvestLevel = harvestLevel;

@@ -9,10 +9,11 @@ interface Props {
 const HandleList: React.FunctionComponent<Props> = ({ handleParts }) => (
     <div>
         <h1>Handles</h1>
-        <SortableTable columnNames={["Name", "Durability", "Modifier"]} data={handleParts.map(handlePart => ({
+        <SortableTable columnNames={["Name", "Durability", "Modifier", "Traits"]} data={handleParts.map(handlePart => ({
             Name: handlePart.Material.Name,
             Durability: handlePart.Durability,
-            Modifier: handlePart.Modifier
+            Modifier: handlePart.Modifier,
+            Traits: handlePart.Traits.join(", ")
         }))} />
     </div>
 )

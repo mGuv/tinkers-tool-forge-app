@@ -5,8 +5,8 @@ class ShaftPart extends Part {
     public readonly BonusAmmo: number;
     public readonly Modifier: number;
 
-    public constructor(material: Material, bonusAmmo: number, modifier: number) {
-        super(material);
+    public constructor(material: Material, traits: string[], bonusAmmo: number, modifier: number) {
+        super(material, traits);
         this.BonusAmmo = bonusAmmo;
         this.Modifier = modifier;
     }
