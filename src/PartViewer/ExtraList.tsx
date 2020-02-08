@@ -11,7 +11,7 @@ interface Props {
 const ExtraList: React.FunctionComponent<Props> = ({ extraParts, hideMaterial }) => (
     <div>
         <h1>Extras</h1>
-        <SortableTable columnNames={["Name", "Extra Durability", "Traits", "Actions"]} data={extraParts.map(extraPart => ({
+        <SortableTable columnInfo={["Name", "Extra Durability", "Traits", ["Actions", false]]} data={extraParts.map(extraPart => ({
             Name: extraPart.Material.Name,
             "Extra Durability": extraPart.ExtraDurability,
             Traits: extraPart.Traits.join(", "),

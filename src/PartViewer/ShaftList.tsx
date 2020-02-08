@@ -11,7 +11,7 @@ interface Props {
 const ShaftList: React.FunctionComponent<Props> = ({ shaftParts, hideMaterial }) => (
     <div>
         <h1>Shafts</h1>
-        <SortableTable columnNames={["Name", "Bonus Ammo", "Modifier", "Traits", "Actions"]} data={shaftParts.map(shaftPart => ({
+        <SortableTable columnInfo={["Name", "Bonus Ammo", "Modifier", "Traits", ["Actions", false]]} data={shaftParts.map(shaftPart => ({
             Name: shaftPart.Material.Name,
             "Bonus Ammo": shaftPart.BonusAmmo,
             Modifier: shaftPart.Modifier,

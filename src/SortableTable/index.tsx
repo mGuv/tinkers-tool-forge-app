@@ -3,7 +3,7 @@ import React from 'react';
 import styles from './styles.module.css';
 
 interface SortableTableProps<T> {
-  columnNames: (keyof T)[]
+  columnInfo: ([keyof T, boolean] | keyof T)[]
   data: T[]
 }
 
@@ -26,7 +26,7 @@ class SortableTable<T> extends React.PureComponent<SortableTableProps<T>, Sortab
   constructor(props: SortableTableProps<T>) {
     super(props);
     this.state = {
-      lastSort: props.columnNames[0],
+      lastSort: props.columnInfo[0] instanceof Array ? props.columnInfo[0][0] : props.columnInfo[0],
       reverse: false
     }
   }
@@ -46,15 +46,30 @@ class SortableTable<T> extends React.PureComponent<SortableTableProps<T>, Sortab
       else
         return -s;
     });
-   
+
+    let columns = this.props.columnInfo.map(k => k instanceof Array ? k : [k, true] as [keyof T, boolean]);
 
     return (
-      <div className={styles.table} style={{gridTemplateColumns: 'repeat(' + this.props.columnNames.length + ' , 1fr)'}}>
-        {this.props.columnNames.map(key => <div onClick={()=>this.sortBy(key)} key={key as string} className={styles.tableHeaderCell}>{key}{this.state.lastSort === key && <SortingIndicator reverse={this.state.reverse}/>}</div>)}
+      <div className={styles.table} style={{gridTemplateColumns: `repeat(${this.props.columnInfo.length}, 1fr)` }}>
+        { columns.map(key => {
+          if (key[1]) {
+            return (
+              <div onClick={()=>this.sortBy(key[0])} key={key[0] as string} className={styles.tableHeaderCell}>
+                {key} {this.state.lastSort === key[0] && <SortingIndicator reverse={this.state.reverse}/>}
+              </div>
+            )
+          }
+          else {
+            return (
+              <div key={key[0] as string} className={styles.tableHeaderCell}>{key}</div>
+            )
+          }
+          })
+        }
         {
           sortedData.map(data => 
-            <div className={styles.tableRow} style={{gridColumn: 'span ' + this.props.columnNames.length ,gridTemplateColumns: 'repeat(' + this.props.columnNames.length + ' , 1fr)'}}>
-              {this.props.columnNames.map(columnName => <div className={styles.tableCell}>{data[columnName]}</div>)}
+            <div className={styles.tableRow} style={{gridColumn: `span ${this.props.columnInfo.length}` ,gridTemplateColumns: `repeat(${this.props.columnInfo.length}, 1fr)`}}>
+              {columns.map(columnName => <div className={styles.tableCell}>{data[columnName[0]]}</div>)}
             </div>
           )
         }

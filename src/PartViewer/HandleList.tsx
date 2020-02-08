@@ -11,7 +11,7 @@ interface Props {
 const HandleList: React.FunctionComponent<Props> = ({ handleParts, hideMaterial }) => (
     <div>
         <h1>Handles</h1>
-        <SortableTable columnNames={["Name", "Durability", "Modifier", "Traits", "Actions"]} data={handleParts.map(handlePart => ({
+        <SortableTable columnInfo={["Name", "Durability", "Modifier", "Traits", ["Actions", false]]} data={handleParts.map(handlePart => ({
             Name: handlePart.Material.Name,
             Durability: handlePart.Durability,
             Modifier: handlePart.Modifier,

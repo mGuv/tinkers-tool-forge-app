@@ -11,7 +11,7 @@ interface Props {
 const FletchingList: React.FunctionComponent<Props> = ({ fletchingParts, hideMaterial }) => (
     <div>
         <h1>Fletchings</h1>
-        <SortableTable columnNames={["Name", "Accuracy", "Modifer", "Traits", "Actions"]} data={fletchingParts.map(fletchingPart => ({
+        <SortableTable columnInfo={["Name", "Accuracy", "Modifer", "Traits", ["Actions", false]]} data={fletchingParts.map(fletchingPart => ({
             Name: fletchingPart.Material.Name,
             Accuracy: fletchingPart.Accuracy,
             Modifer: fletchingPart.Modifier,
