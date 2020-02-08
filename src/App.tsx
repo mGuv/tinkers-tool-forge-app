@@ -19,6 +19,9 @@ import ShaftList from './PartViewer/ShaftList';
 import ShaftPart from './Materials/Parts/ShaftPart';
 import PickaxeBuilder from './ToolForge/PickaxeBuilder';
 import HammerBuilder from './ToolForge/HammerBuilder';
+import styles from './App.module.css';
+
+require("typeface-minecraft");
 
 interface Props {
 
@@ -52,8 +55,10 @@ class App extends React.PureComponent<Props, State> {
     const headParts = this.state.materials.filter(m => m.HeadPart).map(m => m.HeadPart as HeadPart);
     const handleParts = this.state.materials.filter(m => m.HandlePart).map(m => m.HandlePart as HandlePart);
     return (
+      <div className={styles.app}>
       <Router>
         <Header />
+        <div className={styles.appBody}>
         <Switch>
           <Route path="/bowLimbs">
             <BowPartList hideMaterial={this.hideMaterial.bind(this)} bowParts={this.state.materials.filter(m => m.BowPart).map(m => m.BowPart as BowPart)}/>
@@ -93,8 +98,9 @@ class App extends React.PureComponent<Props, State> {
             <Redirect to="/bowLimbs"/>
           </Route>
         </Switch>
+        </div>
       </Router>
-      
+      </div>
     );
   }
 }

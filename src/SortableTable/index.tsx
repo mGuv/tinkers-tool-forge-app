@@ -28,11 +28,11 @@ function Rows<T>({rows, columnNames}: {rows: T[], columnNames: (keyof T)[]}) {
 
 function SortingIndicator({reverse = false}) {
   if (!reverse) {
-    return (<div>^</div>)
+    return (<i className="fas fa-angle-up"></i>)
   }
   else
   {
-    return (<div>v</div>)
+    return (<i className="fas fa-angle-down"></i>)
   }
 }
 
@@ -60,24 +60,29 @@ class SortableTable<T> extends React.PureComponent<SortableTableProps<T>, Sortab
       else
         return -s;
     });
+   
 
     return (
-      <table className={styles.table}>
-          <thead>
-            <tr>
-                { this.props.columnNames.map(key => 
-                  <th onClick={()=>this.sortBy(key)} key={key as string}>
-                    <div className={styles.columnHeader} >
-                      {key}
-                      {this.state.lastSort === key && <SortingIndicator reverse={this.state.reverse}/>}
-                    </div>
-                  </th>) }
-            </tr>
-          </thead>
-          <tbody>
-            <Rows rows={sortedData} columnNames={this.props.columnNames} />
-          </tbody>
-      </table>
+      <div className={styles.table} style={{gridTemplateColumns: 'repeat(' + this.props.columnNames.length + ' , 1fr)'}}>
+        {this.props.columnNames.map(key => <div onClick={()=>this.sortBy(key)} key={key as string} className={styles.tableHeaderCell}>{key}{this.state.lastSort === key && <SortingIndicator reverse={this.state.reverse}/>}</div>)}
+        {sortedData.map(data => this.props.columnNames.map(columnName => <div className={styles.tableCell}>{data[columnName]}</div>))}
+      </div>
+      // <table className={styles.table}>
+      //     <thead>
+      //       <tr>
+      //           { this.props.columnNames.map(key => 
+      //             <th onClick={()=>this.sortBy(key)} key={key as string}>
+      //               <div className={styles.columnHeader} >
+      //                 {key}
+      //                 {this.state.lastSort === key && <SortingIndicator reverse={this.state.reverse}/>}
+      //               </div>
+      //             </th>) }
+      //       </tr>
+      //     </thead>
+      //     <tbody>
+      //       <Rows rows={sortedData} columnNames={this.props.columnNames} />
+      //     </tbody>
+      // </table>
     )
   }
 }
