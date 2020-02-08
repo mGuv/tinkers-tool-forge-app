@@ -54,7 +54,7 @@ class SortableTable<T> extends React.PureComponent<SortableTableProps<T>, Sortab
         { columns.map(key => {
           if (key[1]) {
             return (
-              <div onClick={()=>this.sortBy(key[0])} key={key[0] as string} className={styles.tableHeaderCell}>
+              <div onClick={()=>this.sortBy(key[0])} key={key[0] as string} className={`${styles.tableHeaderCell} ${styles.sortableTableHeaderCell}`}>
                 {key}{this.state.lastSort === key[0] && <SortingIndicator reverse={this.state.reverse}/>}
               </div>
             )

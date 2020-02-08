@@ -8,7 +8,6 @@
   text-align: center;
   font-weight: bold;
   background-color: #8b8b8b;
-  cursor: pointer;
   user-select: none;
 }
 
@@ -16,7 +15,11 @@
   margin-left: 0.5em;
 }
 
-.tableHeaderCell:hover {
+.sortableTableHeaderCell {
+  cursor: pointer;
+}
+
+.sortableTableHeaderCell:hover {
   background-color: #dbd9d9;
 }
 
