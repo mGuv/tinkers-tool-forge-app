@@ -5,7 +5,11 @@
   justify-content: space-between;
   flex-direction: row;
   cursor: pointer;
-  min-width: 125px;
+  min-width: 125px; 
+}
+
+.columnHeader, i {
+  margin-left: 0.5em;
 }
 
 .table {
