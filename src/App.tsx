@@ -17,6 +17,8 @@ import HeadList from './PartViewer/HeadList';
 import HeadPart from './Materials/Parts/HeadPart';
 import ShaftList from './PartViewer/ShaftList';
 import ShaftPart from './Materials/Parts/ShaftPart';
+import PickaxeBuilder from './ToolForge/PickaxeBuilder';
+import HammerBuilder from './ToolForge/HammerBuilder';
 
 interface Props {
 
@@ -71,6 +73,19 @@ class App extends React.PureComponent<Props, State> {
           </Route>
           <Route path="/shafts">
             <ShaftList hideMaterial={this.hideMaterial.bind(this)} shaftParts={this.state.materials.filter(m => m.ShaftPart).map(m => m.ShaftPart as ShaftPart)}/>
+          </Route>
+          <Route path="/toolforge" exact={true}>
+            <PickaxeBuilder
+              headParts={this.state.materials.filter(m => m.HeadPart).map(m => m.HeadPart as HeadPart)}
+              handleParts={this.state.materials.filter(m => m.HandlePart).map(m => m.HandlePart as HandlePart)}
+              bindingParts={this.state.materials.filter(m => m.ExtraPart).map(m => m.ExtraPart as ExtraPart)}
+              />
+          </Route>
+          <Route path="/toolforge/hammer">
+            <HammerBuilder
+              headParts={this.state.materials.filter(m => m.HeadPart).map(m => m.HeadPart as HeadPart)}
+              handleParts={this.state.materials.filter(m => m.HandlePart).map(m => m.HandlePart as HandlePart)}
+              />
           </Route>
           <Route path="/">
             <Redirect to="/bowLimbs"/>

@@ -22,6 +22,7 @@ const Menu: React.FunctionComponent = () => (
       <MenuItem title="Handles" to="/handles"/>
       <MenuItem title="Heads" to="/heads"/>
       <MenuItem title="Shafts" to="/shafts"/>
+      <MenuItem title="Tool Forge" to="/toolforge"/>
     </ul>
   </nav>
 )

@@ -1,5 +1,6 @@
 import InternalPartProps from "./InternalPartProps";
 import React from "react";
+import styles from "./Part.module.css"
 
 export default class BasePart extends React.PureComponent<InternalPartProps> {
     public constructor(props: InternalPartProps) {
@@ -13,14 +14,11 @@ export default class BasePart extends React.PureComponent<InternalPartProps> {
 
         const partStyle = {
             ...this.props.style,
-            height: '128px',
-            width: '128px',
             backgroundColor: 'rgb(' + red + ',' + green + ',' + blue + ')',
-            backgroundBlendMode: 'multiply',
-            backgroundImage: 'url("/textures/parts/' + this.props.partName + '.png")',
-            WebkitMaskImage: 'url("/textures/parts/' + this.props.partName + '.png")'
+            backgroundImage: 'url("/textures/' + this.props.partName + '.png")',
+            WebkitMaskImage: 'url("/textures/' + this.props.partName + '.png")'
         }
-        return <div style={partStyle} data-hex={this.props.materialColor}>
+        return <div style={partStyle} className={styles.part} data-hex={this.props.materialColor}>
 
         </div>;
     }
