@@ -68,8 +68,15 @@ class SortableTable<T> extends React.PureComponent<SortableTableProps<T>, Sortab
         }
         {
           sortedData.map(data => 
-            <div className={styles.tableRow} style={{gridColumn: `span ${this.props.columnInfo.length}` ,gridTemplateColumns: `repeat(${this.props.columnInfo.length}, 1fr)`}}>
-              {columns.map(columnName => <div className={styles.tableCell}>{data[columnName[0]]}</div>)}
+            <div 
+              className={styles.tableRow} 
+              style={{gridColumn: `span ${this.props.columnInfo.length}` ,gridTemplateColumns: `repeat(${this.props.columnInfo.length}, 1fr)`}}
+              key={data[columns[0][0]] as unknown as string}
+              >
+              {columns.map(columnName =>
+                <div className={styles.tableCell} key={columnName[0] as string} title={data[columnName[0]] as unknown as string}>
+                  {data[columnName[0]]}
+                </div>)}
             </div>
           )
         }
