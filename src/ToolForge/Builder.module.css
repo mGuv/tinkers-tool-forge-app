@@ -1,0 +1,11 @@
+.page {
+    display: flex;
+}
+
+.builder {
+    flex: 1;
+}
+
+.preview {
+    flex: 3;
+}

@@ -49,6 +49,8 @@ class App extends React.PureComponent<Props, State> {
   }
 
   public render(): JSX.Element {
+    const headParts = this.state.materials.filter(m => m.HeadPart).map(m => m.HeadPart as HeadPart);
+    const handleParts = this.state.materials.filter(m => m.HandlePart).map(m => m.HandlePart as HandlePart);
     return (
       <Router>
         <Header />
@@ -66,25 +68,25 @@ class App extends React.PureComponent<Props, State> {
             <FletchingList hideMaterial={this.hideMaterial.bind(this)} fletchingParts={this.state.materials.filter(m => m.FletchingPart).map(m => m.FletchingPart as FletchingPart)}/>
           </Route>
           <Route path="/handles">
-            <HandleList hideMaterial={this.hideMaterial.bind(this)} handleParts={this.state.materials.filter(m => m.HandlePart).map(m => m.HandlePart as HandlePart)}/>
+            <HandleList hideMaterial={this.hideMaterial.bind(this)} handleParts={handleParts}/>
           </Route>
           <Route path="/heads">
-            <HeadList hideMaterial={this.hideMaterial.bind(this)} headParts={this.state.materials.filter(m => m.HeadPart).map(m => m.HeadPart as HeadPart)}/>
+            <HeadList hideMaterial={this.hideMaterial.bind(this)} headParts={headParts}/>
           </Route>
           <Route path="/shafts">
             <ShaftList hideMaterial={this.hideMaterial.bind(this)} shaftParts={this.state.materials.filter(m => m.ShaftPart).map(m => m.ShaftPart as ShaftPart)}/>
           </Route>
           <Route path="/toolforge" exact={true}>
             <PickaxeBuilder
-              headParts={this.state.materials.filter(m => m.HeadPart).map(m => m.HeadPart as HeadPart)}
-              handleParts={this.state.materials.filter(m => m.HandlePart).map(m => m.HandlePart as HandlePart)}
+              headParts={headParts}
+              handleParts={handleParts}
               bindingParts={this.state.materials.filter(m => m.ExtraPart).map(m => m.ExtraPart as ExtraPart)}
               />
           </Route>
           <Route path="/toolforge/hammer">
             <HammerBuilder
-              headParts={this.state.materials.filter(m => m.HeadPart).map(m => m.HeadPart as HeadPart)}
-              handleParts={this.state.materials.filter(m => m.HandlePart).map(m => m.HandlePart as HandlePart)}
+              headParts={headParts}
+              handleParts={handleParts}
               />
           </Route>
           <Route path="/">
