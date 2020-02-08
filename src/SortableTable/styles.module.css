@@ -1,13 +1,3 @@
-.columnHeader {
-  text-align: start;
-  border-bottom: 1px solid grey;
-  display: flex;
-  justify-content: space-between;
-  flex-direction: row;
-  cursor: pointer;
-  min-width: 125px;
-}
-
 .table {
   display: grid;
 }
@@ -19,6 +9,11 @@
   font-weight: bold;
   background-color: #8b8b8b;
   cursor: pointer;
+  user-select: none;
+}
+
+.tableHeaderCell i {
+  margin-left: 0.5em;
 }
 
 .tableHeaderCell:hover {
