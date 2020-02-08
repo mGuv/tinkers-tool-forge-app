@@ -25,9 +25,17 @@
   background-color: #dbd9d9;
 }
 
+.tableRow {
+  display: grid;
+  background-color: #c6c6c6;
+}
+
+.tableRow:nth-child(even) {
+  background-color: #d3d1d1;
+}
+
 .tableCell {
   padding: 0.5em;
   grid-column: span 1;
   text-align: center;
-  background-color: #c6c6c6;
 }
