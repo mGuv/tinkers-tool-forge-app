@@ -6,6 +6,7 @@
   color: rgb(199, 199, 199);
   font-size: 1.2em;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .header nav ul {
