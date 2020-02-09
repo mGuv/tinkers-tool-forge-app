@@ -1,9 +1,27 @@
 .app {
     font-family: "Minecraft";
-    color: #21212e;
+    color: #373737;
+    background-color: #c6c6c6;
     font-size: 0.8em;
 }
 
 .appBody {
-    /* padding: 0.5em; */
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+input {
+    font-family: "Minecraft";
+    color:#f0f0f0;
+    background-color: #8b8b8b;
+    padding: 8px;
+}
+
+input:focus {
+    background-color: #7779b1;
+
+}
+
+input::placeholder {
+    color: #f0f0f0;
 }

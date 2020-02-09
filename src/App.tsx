@@ -19,6 +19,7 @@ import ShaftList from './PartViewer/ShaftList';
 import ShaftPart from './Materials/Parts/ShaftPart';
 import styles from './App.module.css';
 import Toolforge from './ToolForge/Toolforge';
+import MaterialList from './PartViewer/MaterialList';
 
 require("typeface-minecraft");
 
@@ -27,7 +28,8 @@ interface Props {
 }
 
 interface State {
-  materials: Material[],
+  allMaterials: Material[],
+  activeMaterials: Material[],
 }
 
 class App extends React.PureComponent<Props, State> {
@@ -36,18 +38,26 @@ class App extends React.PureComponent<Props, State> {
     super(props);
 
     this.state = {
-      materials: MaterialService.GetInstance().GetAll(),
+      allMaterials: MaterialService.GetInstance().GetAll(),
+      activeMaterials: MaterialService.GetInstance().GetAll(),
     };
   }
 
-  private hideMaterial(material:Material) {
-    const materials:Material[] = Array.from(this.state.materials);
-    materials.splice(materials.indexOf(material), 1);
+  private toggleMaterial(material:Material) {
+    material.Hidden = !material.Hidden;
+    const activeMaterials:Material[] = Array.from(this.state.activeMaterials);
 
+    if(!material.Hidden) {
+      activeMaterials.push(material);
+    } else {
+      activeMaterials.splice(activeMaterials.indexOf(material), 1);
+    }
+    
     this.setState({
       ...this.state,
-      materials 
+      activeMaterials 
     });
+    
   }
 
   public render(): JSX.Element {
@@ -64,26 +74,29 @@ class App extends React.PureComponent<Props, State> {
         <Header />
         <div className={styles.appBody}>
         <Switch>
+          <Route path="/materials">
+            <MaterialList materials={this.state.allMaterials} toggleMaterial={this.toggleMaterial.bind(this)}/>
+          </Route>
           <Route path="/bowLimbs">
-            <BowPartList hideMaterial={this.hideMaterial.bind(this)} bowParts={bowParts}/>
+            <BowPartList bowParts={bowParts}/>
           </Route>
           <Route path="/bowStrings">
-            <BowStringList hideMaterial={this.hideMaterial.bind(this)} bowStringParts={bowStringParts}/>
+            <BowStringList bowStringParts={bowStringParts}/>
           </Route>
           <Route path="/extras">
-            <ExtraList hideMaterial={this.hideMaterial.bind(this)} extraParts={extraParts}/>
+            <ExtraList extraParts={extraParts}/>
           </Route>
           <Route path="/fletchings">
-            <FletchingList hideMaterial={this.hideMaterial.bind(this)} fletchingParts={fletchingParts}/>
+            <FletchingList fletchingParts={fletchingParts}/>
           </Route>
           <Route path="/handles">
-            <HandleList hideMaterial={this.hideMaterial.bind(this)} handleParts={handleParts}/>
+            <HandleList handleParts={handleParts}/>
           </Route>
           <Route path="/heads">
-            <HeadList hideMaterial={this.hideMaterial.bind(this)} headParts={headParts}/>
+            <HeadList headParts={headParts}/>
           </Route>
           <Route path="/shafts">
-            <ShaftList hideMaterial={this.hideMaterial.bind(this)} shaftParts={shaftParts}/>
+            <ShaftList shaftParts={shaftParts}/>
           </Route>
           <Route path="/toolforge">
             <Toolforge
@@ -99,7 +112,7 @@ class App extends React.PureComponent<Props, State> {
               />
           </Route>
           <Route path="/">
-            <Redirect to="/bowLimbs"/>
+            <Redirect to="/materials"/>
           </Route>
         </Switch>
         </div>

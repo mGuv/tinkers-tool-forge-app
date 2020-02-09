@@ -15,6 +15,7 @@ const MenuItem: React.FunctionComponent<MenuItemProps> = ({title, to}) => (
 const Menu: React.FunctionComponent = () => (
   <nav>
     <ul>
+      <MenuItem title="Materials" to="/materials"/>
       <MenuItem title="Bow Limbs" to="/bowLimbs"/>
       <MenuItem title="Bow Strings" to="/bowStrings"/>
       <MenuItem title="Extras" to="/extras"/>

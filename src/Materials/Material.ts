@@ -8,6 +8,7 @@ import ShaftPart from './Parts/ShaftPart';
 class Material {
     public readonly Name: string;
     public readonly Color: string;
+    public Hidden: boolean;
 
     public BowPart?: BowPart;
     public BowStringPart?: BowStringPart;
@@ -20,6 +21,7 @@ class Material {
     public constructor(name: string, color: string) {
         this.Name = name;
         this.Color = color;
+        this.Hidden = false;
     }
 }
 
