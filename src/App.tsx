@@ -108,7 +108,7 @@ class App extends React.PureComponent<Props, State> {
               />
           </Route>
           <Route path="/">
-            <Redirect to="/bowLimbs"/>
+            <Redirect to="/materials"/>
           </Route>
         </Switch>
         </div>
