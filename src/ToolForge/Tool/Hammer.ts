@@ -21,7 +21,7 @@ export default class Hammer extends AbstractTool {
             {
                 part: 'tool_rod',
                 component: 'hammer/handle',
-                materialType: 'toolrod',
+                materialType: 'handle',
             }
         );
     }

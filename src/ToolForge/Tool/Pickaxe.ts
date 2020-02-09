@@ -16,7 +16,7 @@ export default class Pickaxe extends AbstractTool {
             {
                 part: 'part/tool_rod',
                 component: 'pickaxe/handle',
-                materialType: 'toolrod',
+                materialType: 'handle',
             }
         );
     }

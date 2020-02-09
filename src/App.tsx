@@ -87,13 +87,15 @@ class App extends React.PureComponent<Props, State> {
           </Route>
           <Route path="/toolforge">
             <Toolforge
-              headParts={headParts}
-              handleParts={handleParts}
-              bowParts={bowParts}
-              bowStringParts={bowStringParts}
-              extraParts={extraParts}
-              fletchingParts={fletchingParts}
-              shaftParts={shaftParts}
+              partList={{
+                head: headParts,
+                handle: handleParts,
+                bow: bowParts,
+                bowstring: bowStringParts,
+                extra: extraParts,
+                fletching: fletchingParts,
+                shaft: shaftParts,
+              }}
               />
           </Route>
           <Route path="/">

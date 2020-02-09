@@ -1,27 +1,15 @@
 import React from "react";
-import HeadPart from "../Materials/Parts/HeadPart";
-import HandlePart from "../Materials/Parts/HandlePart";
-import BowPart from "../Materials/Parts/BowPart";
-import BowStringPart from "../Materials/Parts/BowStringPart";
-import ExtraPart from "../Materials/Parts/ExtraPart";
-import FletchingPart from "../Materials/Parts/FletchingPart";
-import ShaftPart from "../Materials/Parts/ShaftPart";
 
-import classNames from 'classnames';
-import styles from "./Forge.module.css";
 import AbstractTool from "./Tool/AbstractTool";
 import Pickaxe from "./Tool/Pickaxe";
 import Hammer from "./Tool/Hammer";
 import Shortbow from "./Tool/Shortbow";
+import Part from "../Materials/Parts/Part";
+
+import styles from "./Forge.module.css";
 
 interface ToolforgeProps {
-    headParts: HeadPart[]
-    handleParts: HandlePart[]
-    bowParts: BowPart[]
-    bowStringParts: BowStringPart[]
-    extraParts: ExtraPart[]
-    fletchingParts: FletchingPart[]
-    shaftParts: ShaftPart[]
+    partList: {[key: string]: Part[]};
 }
 
 interface ToolforgeState {
@@ -39,9 +27,7 @@ export default class Toolforge extends React.Component<ToolforgeProps, Toolforge
     public constructor(props: ToolforgeProps) {
         super(props);
 
-        this.state = {
-
-        };
+        this.state = {};
     }
 
     public render() {
@@ -56,7 +42,12 @@ export default class Toolforge extends React.Component<ToolforgeProps, Toolforge
 
             <div className={styles.builder}>
                 {this.state.selectedTool ? this.state.selectedTool.getPartList().map((p) => {
-                    return <div>{p.part}</div>;
+                    return <div className={styles.partPicker}>
+                        <select>
+                            <option>--</option>
+                            {(this.props.partList[p.materialType]).map((m) => <option>{m.Material.Name}</option>)}
+                        </select>
+                    </div>;
                 }) : ''}
             </div>
 
