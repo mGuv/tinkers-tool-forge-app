@@ -19,9 +19,20 @@ class MaterialService {
         this.allMaterials = [];
 
         for (var materialName in apiResponse) {
+            // filter out weird materials
+            if(materialName.indexOf("internal_render") >= 0) {
+                continue;
+            }
+
             var rawMaterial = apiResponse[materialName];
 
-            const newMaterial: Material = new Material(materialName, rawMaterial['colour']);
+            // TODO: Fix Colour Import
+            const blue = rawMaterial['colour'].slice(0,2);
+            const green = rawMaterial['colour'].slice(2,4);
+            const red = rawMaterial['colour'].slice(4,6);
+            const colour = `#${red}${green}${blue}`;
+
+            const newMaterial: Material = new Material(materialName, colour);
 
             if (rawMaterial['head']) {
                 newMaterial.HeadPart = new HeadPart(
