@@ -80,9 +80,7 @@ export default class HammerBuilder extends React.Component<BuilderProps, Builder
             </div>;
         }
 
-        return <div>
-            <h1>Tool Forge</h1>
-
+        return <div className={styles.content}>
             <Link to="/toolforge">Pickaxe Builder</Link>
 
             <h2>Hammer</h2>

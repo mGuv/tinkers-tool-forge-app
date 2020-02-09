@@ -10,7 +10,6 @@ interface Props {
 
 const HeadList: React.FunctionComponent<Props> = ({ headParts, hideMaterial }) => (
     <div>
-        <h1>Heads</h1>
         <SortableTable columnInfo={["Name", "Attack", "Durability", "Harvest Level", "Harvest Speed", "Traits", ["Actions", false]]} data={headParts.map(headPart => ({
             Name: headPart.Material.Name,
             Attack: headPart.Attack,

@@ -74,8 +74,7 @@ export default class PickaxeBuilder extends React.Component<BuilderProps, Builde
             </div>;
         }
 
-        return <div>
-            <h1>Tool Forge</h1>
+        return <div className={styles.content}>
 
             <Link to="/toolforge/hammer">Hammer Builder</Link>
 
