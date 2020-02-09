@@ -14,7 +14,7 @@
     grid-area: Picker;
 }
 
-.toolSelector .tool {
+.toolSelector .toolIcon {
     border: 2px solid grey;
     padding: 2px;
     margin:4px;
@@ -29,13 +29,14 @@
     border-radius: 3px;
     background-color: rgb(198,198,198);
     box-shadow: inset -3px -3px 0px rgb(85,85,85), inset 3px 3px 0px 0px rgb(255,255,255);
+    padding: 6px;
 }
 
-.tool.selected {
+.toolIcon.selected {
     background-color: darkgray;
 }
 
-.tool > div {
+.toolIcon > div {
     transform: scale(0.25);
     transform-origin: top left;
 }
@@ -60,4 +61,25 @@
     text-align: center;
     text-decoration: underline;
     font-weight: normal;
+}
+
+.part {
+    height: 32px;
+    width: 32px;
+    background-blend-mode: multiply;
+    image-rendering: pixelated;
+}
+
+.tool {
+    height: 128px;
+    width: 128px;
+    position: relative;
+}
+
+.tool .part {
+    transform: scale(4);
+    transform-origin: top left;
+    position: absolute;
+    top: 0;
+    left: 0;
 }

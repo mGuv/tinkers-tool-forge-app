@@ -17,8 +17,6 @@ import HeadList from './PartViewer/HeadList';
 import HeadPart from './Materials/Parts/HeadPart';
 import ShaftList from './PartViewer/ShaftList';
 import ShaftPart from './Materials/Parts/ShaftPart';
-import PickaxeBuilder from './ToolForge/PickaxeBuilder';
-import HammerBuilder from './ToolForge/HammerBuilder';
 import styles from './App.module.css';
 import Toolforge from './ToolForge/Toolforge';
 
@@ -87,7 +85,7 @@ class App extends React.PureComponent<Props, State> {
           <Route path="/shafts">
             <ShaftList hideMaterial={this.hideMaterial.bind(this)} shaftParts={shaftParts}/>
           </Route>
-          <Route path="/toolforge" exact={true}>
+          <Route path="/toolforge">
             <Toolforge
               headParts={headParts}
               handleParts={handleParts}
@@ -96,19 +94,6 @@ class App extends React.PureComponent<Props, State> {
               extraParts={extraParts}
               fletchingParts={fletchingParts}
               shaftParts={shaftParts}
-              />
-          </Route>
-          <Route path="/toolforge/pickaxe" exact={true}>
-            <PickaxeBuilder
-              headParts={headParts}
-              handleParts={handleParts}
-              bindingParts={extraParts}
-              />
-          </Route>
-          <Route path="/toolforge/hammer">
-            <HammerBuilder
-              headParts={headParts}
-              handleParts={handleParts}
               />
           </Route>
           <Route path="/">
