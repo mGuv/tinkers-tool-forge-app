@@ -34,7 +34,7 @@ class MaterialList extends React.PureComponent<Props, State> {
             <div>
                 <div style={{marginTop: "1em", marginBottom: "1em"}}><input onChange={this.updateFilter.bind(this)} autoFocus placeholder="Filter Materials..."/></div>
                 <SortableTable columnInfo={[["Colour", false], "Name", ["Visibility", false]]} data={this.props.materials.filter(material => material.Name.indexOf(this.state.materialFilter) >= 0).map(material => ({
-                    Colour: <div style={{width: "16px", height: "16px", backgroundColor: "#" + material.Color}}/>,
+                    Colour: <div style={{width: "16px", height: "16px", backgroundColor: material.Color}}/>,
                     Name: material.Name,
                     "Visibility": <i onClick={() => {this.props.toggleMaterial(material)}} className={material.Hidden ? 'fas fa-eye-slash' :'fas fa-eye'}/>
                 }))} />

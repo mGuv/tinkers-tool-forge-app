@@ -26,7 +26,13 @@ class MaterialService {
 
             var rawMaterial = apiResponse[materialName];
 
-            const newMaterial: Material = new Material(materialName, rawMaterial['colour']);
+            // TODO: Fix Colour Import
+            const blue = rawMaterial['colour'].slice(0,2);
+            const green = rawMaterial['colour'].slice(2,4);
+            const red = rawMaterial['colour'].slice(4,6);
+            const colour = `#${red}${green}${blue}`;
+
+            const newMaterial: Material = new Material(materialName, colour);
 
             if (rawMaterial['head']) {
                 newMaterial.HeadPart = new HeadPart(
