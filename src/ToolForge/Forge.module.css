@@ -1,0 +1,63 @@
+.forge {
+    margin: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+    grid-template-areas: "Picker Builder TopInfo" "Picker Builder BottomInfo";
+    justify-items: stretch;
+    align-items: stretch;
+}
+
+.toolSelector {
+    grid-area: Picker;
+}
+
+.toolSelector .tool {
+    border: 2px solid grey;
+    padding: 2px;
+    margin:4px;
+    background-color: lightgray;
+    display: inline-block;
+    height: 32px;
+    width:32px;
+}
+
+.builder {
+    grid-area: Builder;
+    border-radius: 3px;
+    background-color: rgb(198,198,198);
+    box-shadow: inset -3px -3px 0px rgb(85,85,85), inset 3px 3px 0px 0px rgb(255,255,255);
+}
+
+.tool.selected {
+    background-color: darkgray;
+}
+
+.tool > div {
+    transform: scale(0.25);
+    transform-origin: top left;
+}
+
+.topInfo {
+    grid-area: TopInfo;
+}
+
+.bottomInfo {
+    grid-area: BottomInfo;
+}
+
+.topInfo,.bottomInfo {
+    border: 8px solid rgb(136,139,127);
+    padding: 8px;
+    background-color: #212121;
+    color: white
+}
+
+.topInfo h2,.bottomInfo h2 {
+    margin-top: 0;
+    text-align: center;
+    text-decoration: underline;
+    font-weight: normal;
+}

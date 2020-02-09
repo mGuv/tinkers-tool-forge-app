@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import LargePlate from "../Parts/LargePlate";
 import ToughToolrod from "../Parts/ToughToolrod";
 
-import styles from "./Builder.module.css";
+import styles from "./Forge.module.css";
 
 interface BuilderState {
     selectedHead?: HeadPart;

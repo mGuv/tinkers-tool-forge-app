@@ -8,7 +8,7 @@ import Binding from "../Parts/Binding";
 import Preview from "../Parts/Tool/Pickaxe/Preview";
 import { Link } from "react-router-dom";
 
-import styles from "./Builder.module.css";
+import styles from "./Forge.module.css";
 
 interface BuilderState {
     selectedHead?: HeadPart;

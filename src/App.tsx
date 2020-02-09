@@ -20,6 +20,7 @@ import ShaftPart from './Materials/Parts/ShaftPart';
 import PickaxeBuilder from './ToolForge/PickaxeBuilder';
 import HammerBuilder from './ToolForge/HammerBuilder';
 import styles from './App.module.css';
+import Toolforge from './ToolForge/Toolforge';
 
 require("typeface-minecraft");
 
@@ -54,6 +55,11 @@ class App extends React.PureComponent<Props, State> {
   public render(): JSX.Element {
     const headParts = this.state.materials.filter(m => m.HeadPart).map(m => m.HeadPart as HeadPart);
     const handleParts = this.state.materials.filter(m => m.HandlePart).map(m => m.HandlePart as HandlePart);
+    const bowParts = this.state.materials.filter(m => m.BowPart).map(m => m.BowPart as BowPart);
+    const bowStringParts = this.state.materials.filter(m => m.BowStringPart).map(m => m.BowStringPart as BowStringPart);
+    const extraParts = this.state.materials.filter(m => m.ExtraPart).map(m => m.ExtraPart as ExtraPart);
+    const fletchingParts = this.state.materials.filter(m => m.FletchingPart).map(m => m.FletchingPart as FletchingPart);
+    const shaftParts = this.state.materials.filter(m => m.ShaftPart).map(m => m.ShaftPart as ShaftPart);
     return (
       <div className={styles.app}>
       <Router>
@@ -61,16 +67,16 @@ class App extends React.PureComponent<Props, State> {
         <div className={styles.appBody}>
         <Switch>
           <Route path="/bowLimbs">
-            <BowPartList hideMaterial={this.hideMaterial.bind(this)} bowParts={this.state.materials.filter(m => m.BowPart).map(m => m.BowPart as BowPart)}/>
+            <BowPartList hideMaterial={this.hideMaterial.bind(this)} bowParts={bowParts}/>
           </Route>
           <Route path="/bowStrings">
-            <BowStringList hideMaterial={this.hideMaterial.bind(this)} bowStringParts={this.state.materials.filter(m => m.BowStringPart).map(m => m.BowStringPart as BowStringPart)}/>
+            <BowStringList hideMaterial={this.hideMaterial.bind(this)} bowStringParts={bowStringParts}/>
           </Route>
           <Route path="/extras">
-            <ExtraList hideMaterial={this.hideMaterial.bind(this)} extraParts={this.state.materials.filter(m => m.ExtraPart).map(m => m.ExtraPart as ExtraPart)}/>
+            <ExtraList hideMaterial={this.hideMaterial.bind(this)} extraParts={extraParts}/>
           </Route>
           <Route path="/fletchings">
-            <FletchingList hideMaterial={this.hideMaterial.bind(this)} fletchingParts={this.state.materials.filter(m => m.FletchingPart).map(m => m.FletchingPart as FletchingPart)}/>
+            <FletchingList hideMaterial={this.hideMaterial.bind(this)} fletchingParts={fletchingParts}/>
           </Route>
           <Route path="/handles">
             <HandleList hideMaterial={this.hideMaterial.bind(this)} handleParts={handleParts}/>
@@ -79,13 +85,24 @@ class App extends React.PureComponent<Props, State> {
             <HeadList hideMaterial={this.hideMaterial.bind(this)} headParts={headParts}/>
           </Route>
           <Route path="/shafts">
-            <ShaftList hideMaterial={this.hideMaterial.bind(this)} shaftParts={this.state.materials.filter(m => m.ShaftPart).map(m => m.ShaftPart as ShaftPart)}/>
+            <ShaftList hideMaterial={this.hideMaterial.bind(this)} shaftParts={shaftParts}/>
           </Route>
           <Route path="/toolforge" exact={true}>
+            <Toolforge
+              headParts={headParts}
+              handleParts={handleParts}
+              bowParts={bowParts}
+              bowStringParts={bowStringParts}
+              extraParts={extraParts}
+              fletchingParts={fletchingParts}
+              shaftParts={shaftParts}
+              />
+          </Route>
+          <Route path="/toolforge/pickaxe" exact={true}>
             <PickaxeBuilder
               headParts={headParts}
               handleParts={handleParts}
-              bindingParts={this.state.materials.filter(m => m.ExtraPart).map(m => m.ExtraPart as ExtraPart)}
+              bindingParts={extraParts}
               />
           </Route>
           <Route path="/toolforge/hammer">
