@@ -61,6 +61,23 @@ class App extends React.PureComponent<Props, State> {
     
   }
 
+  private showAllMaterials() {
+    const activeMaterials:Material[] = Array.from(this.state.allMaterials);
+    activeMaterials.forEach(material => material.Hidden = false);
+
+    this.setState({
+      activeMaterials
+    });
+  }
+
+  private hideAllMaterials() {
+    this.state.activeMaterials.forEach(material => material.Hidden = true);
+
+    this.setState({
+      activeMaterials: []
+    });
+  }
+
   public render(): JSX.Element {
     const headParts = this.state.activeMaterials.filter(m => m.HeadPart).map(m => m.HeadPart as HeadPart);
     const handleParts = this.state.activeMaterials.filter(m => m.HandlePart).map(m => m.HandlePart as HandlePart);
@@ -71,7 +88,7 @@ class App extends React.PureComponent<Props, State> {
         <div className={styles.appBody}>
         <Switch>
           <Route path="/materials">
-            <MaterialList materials={this.state.allMaterials} toggleMaterial={this.toggleMaterial.bind(this)}/>
+            <MaterialList materials={this.state.allMaterials} hideAll={this.hideAllMaterials.bind(this)} showAll={this.showAllMaterials.bind(this)} toggleMaterial={this.toggleMaterial.bind(this)}/>
           </Route>
           <Route path="/bowLimbs">
             <BowPartList bowParts={this.state.activeMaterials.filter(m => m.BowPart).map(m => m.BowPart as BowPart)}/>
