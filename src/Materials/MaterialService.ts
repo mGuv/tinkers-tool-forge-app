@@ -19,6 +19,11 @@ class MaterialService {
         this.allMaterials = [];
 
         for (var materialName in apiResponse) {
+            // filter out weird materials
+            if(materialName.indexOf("internal_render") >= 0) {
+                continue;
+            }
+
             var rawMaterial = apiResponse[materialName];
 
             const newMaterial: Material = new Material(materialName, rawMaterial['colour']);
