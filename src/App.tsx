@@ -68,7 +68,7 @@ class App extends React.PureComponent<Props, State> {
       <div className={styles.app}>
       <Router>
         <Header />
-        <div>
+        <div className={styles.appBody}>
         <Switch>
           <Route path="/materials">
             <MaterialList materials={this.state.allMaterials} toggleMaterial={this.toggleMaterial.bind(this)}/>
