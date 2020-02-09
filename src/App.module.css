@@ -3,6 +3,11 @@
     color: #21212e;
     background-color: #c6c6c6;
     font-size: 0.8em;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
 }
 
 input {
