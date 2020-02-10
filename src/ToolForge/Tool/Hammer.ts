@@ -2,26 +2,27 @@ import AbstractTool from "./AbstractTool";
 
 export default class Hammer extends AbstractTool {
     public constructor() {
-        super('Hammer',
+        super('Hammer');
+
+        this.setHead(
             {
-                part: 'hammer/head',
-                component: 'hammer/head',
-                materialType: 'head',
+                partTexture: 'hammer/head',
+                componentTexture: 'hammer/head',
             },
             {
-                part: 'large_plate',
-                component: 'hammer/front',
-                materialType: 'head',
+                partTexture: 'large_plate',
+                componentTexture: 'hammer/front',
             },
             {
-                part: 'large_plate',
-                component: 'hammer/back',
-                materialType: 'head',
+                partTexture: 'large_plate',
+                componentTexture: 'hammer/back',
             },
+        );
+
+        this.setHandle(
             {
-                part: 'tool_rod',
-                component: 'hammer/handle',
-                materialType: 'handle',
+                partTexture: 'tool_rod',
+                componentTexture: 'hammer/handle',
             }
         );
     }

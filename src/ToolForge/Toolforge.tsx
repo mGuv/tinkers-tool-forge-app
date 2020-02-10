@@ -3,25 +3,27 @@ import React from "react";
 import AbstractTool from "./Tool/AbstractTool";
 import Pickaxe from "./Tool/Pickaxe";
 import Hammer from "./Tool/Hammer";
-import Shortbow from "./Tool/Shortbow";
+import Shuriken from "./Tool/Shuriken";
 import Part from "../Materials/Parts/Part";
 
 import styles from "./Forge.module.css";
 
 interface ToolforgeProps {
-    partList: {[key: string]: Part[]};
+    partList: { [key: string]: Part[] };
 }
 
 interface ToolforgeState {
-    selectedTool?: AbstractTool
+    selectedTool?: AbstractTool;
 }
 
-export default class Toolforge extends React.Component<ToolforgeProps, ToolforgeState>
-{
+export default class Toolforge extends React.Component<
+    ToolforgeProps,
+    ToolforgeState
+    > {
     private toolOptions: AbstractTool[] = [
         new Pickaxe(),
         new Hammer(),
-        new Shortbow(),
+        new Shuriken()
     ];
 
     public constructor(props: ToolforgeProps) {
@@ -31,48 +33,103 @@ export default class Toolforge extends React.Component<ToolforgeProps, Toolforge
     }
 
     public render() {
-        return <div className={styles.forge}>
-            <div className={styles.toolSelector}>
-                {this.toolOptions.map((tool) => {
-                    return <div className={styles.toolIcon} onClick={() => this.setState({...this.state, selectedTool: tool})}>
-                        {tool.smallPreview()}
-                    </div>;
-                })}
-            </div>
+        const partPickers = this.buildPartPickers();
 
-            <div className={styles.builder}>
-                {this.state.selectedTool ? this.state.selectedTool.getPartList().map((p) => {
-                    return <div className={styles.partPicker}>
+        return (
+            <div className={styles.forge}>
+                <div className={styles.toolSelector}>
+                    {this.toolOptions.map(tool => {
+                        return (
+                            <div
+                                className={styles.toolIcon}
+                                onClick={() =>
+                                    this.setState({ ...this.state, selectedTool: tool })
+                                }
+                            >
+                                {tool.smallPreview()}
+                            </div>
+                        );
+                    })}
+                </div>
+
+                <div className={styles.builder}>
+                    {partPickers}
+                </div>
+
+                <div className={styles.topInfo}>
+                    {this.state.selectedTool ? (
+                        <React.Fragment>
+                            <h2>{this.state.selectedTool.Name}</h2>
+                            Durability: 950/950
+              <br />
+                            Mining Level: Obsidian
+              <br />
+                            Mining Speed: 3.6
+              <br />
+                            Attack: 5.7
+              <br />
+                            Modifiers: 3<br />
+                        </React.Fragment>
+                    ) : (
+                            <React.Fragment>
+                                <h2>No Tool Selected</h2>
+
+                                <p>Select a tool to build</p>
+                            </React.Fragment>
+                        )}
+                </div>
+
+                <div className={styles.bottomInfo}>
+                    <h2>Traits</h2>
+                    Cheap
+        </div>
+            </div>
+        );
+    }
+
+    private buildPartPickers() {
+        if (!this.state.selectedTool) {
+            return '';
+        }
+
+        return <React.Fragment>
+            {this.state.selectedTool.getPartList().head.map(p => {
+                return (
+                    <div className={styles.partPicker}>
                         <select>
                             <option>--</option>
-                            {(this.props.partList[p.materialType]).map((m) => <option>{m.Material.Name}</option>)}
+                            {this.props.partList.head.map(m => (
+                                <option>{m.Material.Name}</option>
+                            ))}
                         </select>
-                    </div>;
-                }) : ''}
-            </div>
-
-            <div className={styles.topInfo}>
-                {this.state.selectedTool ? (<React.Fragment>
-                    <h2>{this.state.selectedTool.Name}</h2>
-                
-                    Durability: 950/950<br/>
-                    Mining Level: Obsidian<br/>
-                    Mining Speed: 3.6<br/>
-                    Attack: 5.7<br/>
-                    Modifiers: 3<br/>
-                </React.Fragment>) : <React.Fragment>
-                    <h2>No Tool Selected</h2>
-
-                    <p>Select a tool to build</p>
-                </React.Fragment>}
-            </div>
-
-            <div className={styles.bottomInfo}>
-                <h2>Traits</h2>
-
-                Cheap
-            </div>
-        </div>;
+                    </div>
+                );
+            })}
+            {this.state.selectedTool.getPartList().handle.map(p => {
+                return (
+                    <div className={styles.partPicker}>
+                        <select>
+                            <option>--</option>
+                            {this.props.partList.handle.map(m => (
+                                <option>{m.Material.Name}</option>
+                            ))}
+                        </select>
+                    </div>
+                );
+            })}
+            {this.state.selectedTool.getPartList().extra.map(p => {
+                return (
+                    <div className={styles.partPicker}>
+                        <select>
+                            <option>--</option>
+                            {this.props.partList.extra.map(m => (
+                                <option>{m.Material.Name}</option>
+                            ))}
+                        </select>
+                    </div>
+                );
+            })}
+        </React.Fragment>;
     }
 
     // public placeholder() {

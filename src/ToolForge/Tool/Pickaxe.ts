@@ -2,22 +2,23 @@ import AbstractTool from "./AbstractTool";
 
 export default class Pickaxe extends AbstractTool {
     public constructor() {
-        super('Pickaxe',
+        super('Pickaxe');
+
+        this.setHead(
             {
-                part: 'pickaxe/head',
-                component: 'pickaxe/head',
-                materialType: 'head',
-            },
-            {
-                part: 'part/binding',
-                component: 'pickaxe/binding',
-                materialType: 'extra',
-            },
-            {
-                part: 'part/tool_rod',
-                component: 'pickaxe/handle',
-                materialType: 'handle',
+                partTexture: 'pickaxe/head',
+                componentTexture: 'pickaxe/head',
             }
         );
+
+        this.setExtra({
+            partTexture: 'part/binding',
+            componentTexture: 'pickaxe/binding',
+        });
+
+        this.setHandle({
+            partTexture: 'part/tool_rod',
+            componentTexture: 'pickaxe/handle',
+        });
     }
 }
