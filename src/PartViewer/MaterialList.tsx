@@ -5,6 +5,8 @@ import Material from '../Materials/Material';
 interface Props {
     materials: Material[],
     toggleMaterial: (material:Material) => void,
+    showAll: () => void,
+    hideAll: () => void
 }
 
 interface State {
@@ -32,7 +34,7 @@ class MaterialList extends React.PureComponent<Props, State> {
     public render() {
         return (
             <div>
-                <div style={{marginTop: "1em", marginBottom: "1em"}}><input onChange={this.updateFilter.bind(this)} autoFocus placeholder="Filter Materials..."/></div>
+                <div style={{display: 'flex', marginTop: "1em", marginBottom: "1em"}}><input style={{marginRight: '1em'}} onChange={this.updateFilter.bind(this)} autoFocus placeholder="Filter Materials..."/><input style={{marginRight: '1em'}} type="button" value="Show All" onClick={this.props.showAll}/><input style={{marginRight: '1em'}} type="button" value="Hide All" onClick={this.props.hideAll}/></div>
                 <SortableTable columnInfo={[["Colour", false], "Name", ["Visibility", false]]} data={this.props.materials.filter(material => material.Name.indexOf(this.state.materialFilter) >= 0).map(material => ({
                     Colour: <div style={{width: "16px", height: "16px", backgroundColor: material.Color}}/>,
                     Name: material.Name,

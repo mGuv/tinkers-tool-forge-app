@@ -60,14 +60,31 @@ class App extends React.PureComponent<Props, State> {
     
   }
 
+  private showAllMaterials() {
+    const activeMaterials:Material[] = Array.from(this.state.allMaterials);
+    activeMaterials.forEach(material => material.Hidden = false);
+
+    this.setState({
+      activeMaterials
+    });
+  }
+
+  private hideAllMaterials() {
+    this.state.activeMaterials.forEach(material => material.Hidden = true);
+
+    this.setState({
+      activeMaterials: []
+    });
+  }
+
   public render(): JSX.Element {
-    const headParts = this.state.materials.filter(m => m.HeadPart).map(m => m.HeadPart as HeadPart);
-    const handleParts = this.state.materials.filter(m => m.HandlePart).map(m => m.HandlePart as HandlePart);
-    const bowParts = this.state.materials.filter(m => m.BowPart).map(m => m.BowPart as BowPart);
-    const bowStringParts = this.state.materials.filter(m => m.BowStringPart).map(m => m.BowStringPart as BowStringPart);
-    const extraParts = this.state.materials.filter(m => m.ExtraPart).map(m => m.ExtraPart as ExtraPart);
-    const fletchingParts = this.state.materials.filter(m => m.FletchingPart).map(m => m.FletchingPart as FletchingPart);
-    const shaftParts = this.state.materials.filter(m => m.ShaftPart).map(m => m.ShaftPart as ShaftPart);
+    const headParts = this.state.activeMaterials.filter(m => m.HeadPart).map(m => m.HeadPart as HeadPart);
+    const handleParts = this.state.activeMaterials.filter(m => m.HandlePart).map(m => m.HandlePart as HandlePart);
+    const bowParts = this.state.activeMaterials.filter(m => m.BowPart).map(m => m.BowPart as BowPart);
+    const bowStringParts = this.state.activeMaterials.filter(m => m.BowStringPart).map(m => m.BowStringPart as BowStringPart);
+    const extraParts = this.state.activeMaterials.filter(m => m.ExtraPart).map(m => m.ExtraPart as ExtraPart);
+    const fletchingParts = this.state.activeMaterials.filter(m => m.FletchingPart).map(m => m.FletchingPart as FletchingPart);
+    const shaftParts = this.state.activeMaterials.filter(m => m.ShaftPart).map(m => m.ShaftPart as ShaftPart);
     return (
       <div className={styles.app}>
       <Router>
@@ -75,7 +92,7 @@ class App extends React.PureComponent<Props, State> {
         <div className={styles.appBody}>
         <Switch>
           <Route path="/materials">
-            <MaterialList materials={this.state.allMaterials} toggleMaterial={this.toggleMaterial.bind(this)}/>
+            <MaterialList materials={this.state.allMaterials} hideAll={this.hideAllMaterials.bind(this)} showAll={this.showAllMaterials.bind(this)} toggleMaterial={this.toggleMaterial.bind(this)}/>
           </Route>
           <Route path="/bowLimbs">
             <BowPartList bowParts={bowParts}/>

@@ -22,11 +22,6 @@
   background-color: #dbd9d9;
 }
 
-.tableRow {
-  display: grid;
-  background-color: #c6c6c6;
-}
-
 .tableCell {
   padding: 0.5em;
   grid-column: span 1;
