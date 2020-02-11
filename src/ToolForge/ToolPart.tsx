@@ -18,13 +18,21 @@ export default class ToolPart extends React.PureComponent<PartProps> {
             WebkitMaskImage: 'url("/textures/' + this.props.partName + '.png")'
         }
         return <div style={{
+            height: (32 * scale) + 'px',
+            width: (32 * scale) + 'px',
+            margin: '5px',
+        }}><div style={{
                 transform: 'scale(' + scale + ')',
                 transformOrigin:'top left',
-                height: (32 * scale).toString() + 'px',
-                width: (32 * scale).toString() + 'px',
                 display: 'inline-block',
+                backgroundColor: '#8b8b8b',
+                borderRight: '1px solid white',
+                borderLeft: '1px solid #373737',
+                borderTop: '1px solid #373737',
+                borderBottom: '1px solid white',
             }}>
             <div style={partStyle} className={styles.part} data-hex={this.props.materialColor}/>
+            </div>
         </div>;
     }
 }

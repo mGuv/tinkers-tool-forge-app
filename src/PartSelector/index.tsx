@@ -54,7 +54,7 @@ class PartSelector<TPart extends Part> extends React.PureComponent<Props<TPart>,
     public render(): JSX.Element
     {
         return (
-            <div ref={this.containerRef} tabIndex={0} onBlur={this.close.bind(this)} onFocus={this.open.bind(this)}>
+            <div ref={this.containerRef} tabIndex={0} onBlur={this.close.bind(this)} onFocus={this.open.bind(this)} className={styles.container}>
                 {this.props.children}
                 {
                     this.state.isOpen ? (<div className={styles.partList}> {this.props.parts.map(p => {
