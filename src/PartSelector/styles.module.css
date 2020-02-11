@@ -1,0 +1,28 @@
+.partRow {
+    grid-template-columns: repeat(2, 1fr);
+    grid-column: span 2;
+    display: grid;
+    padding: 1em;
+    border-bottom: 2px solid #373737;
+    border-top: 2px solid white;
+    cursor: pointer;
+}
+
+.partRow:hover {
+    background-color: #7779b1;
+}
+
+.partList {
+    position: absolute;
+    width: 25vw;
+    height: 50vh;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1em;
+    background-color: #c6c6c6;
+    border-top: 2px solid white;
+    border-left: 2px solid white;
+    border-right: 2px solid #373737;
+    border-bottom: 2px solid #373737;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
