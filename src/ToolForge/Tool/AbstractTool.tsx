@@ -17,9 +17,9 @@ interface ToolComponents<T> {
 
 export default abstract class AbstractTool {
     public readonly Name: string;
-    private head: PartRequirement<HeadPart>[] = [];
-    private extra: PartRequirement<ExtraPart>[] = [];
-    private handle: PartRequirement<HandlePart>[] = [];
+    protected head: PartRequirement<HeadPart>[] = [];
+    protected extra: PartRequirement<ExtraPart>[] = [];
+    protected handle: PartRequirement<HandlePart>[] = [];
 
     public constructor(name: string) {
         this.Name = name;
@@ -60,7 +60,29 @@ export default abstract class AbstractTool {
         </div>;
     }
 
-    public withPart<T>(component: string, part: T) {
-
+    public replaceHead(component: PartRequirement<Part>, part: HeadPart) {
+        for (const index in this.head) {
+            if (this.head[index] === component) {
+                this.head[index].part = part;
+            }
+        }
     }
+
+    public replaceHandle(component: PartRequirement<Part>, part: HandlePart) {
+        for (const index in this.handle) {
+            if (this.handle[index] === component) {
+                this.handle[index].part = part;
+            }
+        }
+    }
+
+    public replaceExtra(component: PartRequirement<Part>, part: ExtraPart) {
+        for (const index in this.extra) {
+            if (this.extra[index] === component) {
+                this.extra[index].part = part;
+            }
+        }
+    }
+
+    abstract getDurability(): number;
 }

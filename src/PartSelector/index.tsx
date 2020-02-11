@@ -5,7 +5,7 @@ import styles from './styles.module.css';
 
 interface Content<TPart> {
     label: string,
-    value: (part:TPart) => string
+    value: (part:TPart) => JSX.Element
 }
 
 interface Props<TPart extends Part> {
@@ -55,8 +55,7 @@ class PartSelector<TPart extends Part> extends React.PureComponent<Props<TPart>,
     {
         return (
             <div ref={this.containerRef} tabIndex={0} onBlur={this.close.bind(this)} onFocus={this.open.bind(this)}>
-                <div>Material Picker</div>
-                <div>
+                {this.props.children}
                 {
                     this.state.isOpen ? (<div className={styles.partList}> {this.props.parts.map(p => {
                         return (<div className={styles.partRow} onClick={() => {this.onItemSelected(p)}}>
@@ -68,7 +67,6 @@ class PartSelector<TPart extends Part> extends React.PureComponent<Props<TPart>,
                         )}
                     )}</div>) : <React.Fragment/>
                 }
-                </div>
             </div>
         )
     }
