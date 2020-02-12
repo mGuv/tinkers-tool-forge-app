@@ -52,11 +52,28 @@ export default abstract class AbstractTool {
         return <div style={partStyle} className={styles.part} />;
     };
 
+    private renderPartColored = (requirement: PartRequirement<Part>) => {
+        const partStyle = {
+            backgroundColor: requirement.part?.Material.Color,
+            backgroundImage: 'url("/textures/' + requirement.componentTexture + '.png")',
+            WebkitMaskImage: 'url("/textures/' + requirement.componentTexture + '.png")'
+        }
+        return <div style={partStyle} className={styles.part} />;
+    };
+
     public smallPreview() {
         return <div className={styles.tool}>
             {this.head.map(this.renderPart)}
             {this.handle.map(this.renderPart)}
             {this.extra.map(this.renderPart)}
+        </div>;
+    }
+
+    public largePreview() {
+        return <div className={styles.tool}>
+            {this.head.map(this.renderPartColored)}
+            {this.handle.map(this.renderPartColored)}
+            {this.extra.map(this.renderPartColored)}
         </div>;
     }
 

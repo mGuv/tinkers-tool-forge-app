@@ -35,7 +35,7 @@ export default class Toolforge extends React.Component<
     public constructor(props: ToolforgeProps) {
         super(props);
 
-        this.state = {switcher:true};
+        this.state = { switcher: true };
     }
 
     public render() {
@@ -67,7 +67,7 @@ export default class Toolforge extends React.Component<
                         <React.Fragment>
                             <h2>{this.state.selectedTool.Name}</h2>
                             Durability: {this.state.selectedTool.getDurability()}
-              <br />
+                            <br />
                             Mining Level: Obsidian
               <br />
                             Mining Speed: 3.6
@@ -88,7 +88,9 @@ export default class Toolforge extends React.Component<
                 <div className={styles.bottomInfo}>
                     <h2>Traits</h2>
                     Cheap
-        </div>
+
+                    {this.state.selectedTool ? this.state.selectedTool.largePreview() : ''}
+                </div>
             </div>
         );
     }
@@ -100,44 +102,44 @@ export default class Toolforge extends React.Component<
 
         return <React.Fragment>
             {this.state.selectedTool.getPartList().head.map(c => {
-                return <PartSelector 
+                return <PartSelector
                     parts={this.props.partList.head as HeadPart[]}
                     selectPart={(p) => {
                         this.state.selectedTool?.replaceHead(c, p);
-                        this.setState({switcher:this.state.switcher})
+                        this.setState({ switcher: this.state.switcher })
                     }}
                     content={[
-                        {label: "Attack", value: p => <span>{p.Attack.toString()}</span>},
-                        {label: "Durability", value: p => <span>{p.Durability.toString()}</span>},
-                        {label: "Preview", value: p => <ToolPart partName={c.partTexture} materialColor={p.Material.Color}/>},
-                    ]}><ToolPart partName={c.partTexture} materialColor={c.part?.Material.Color || '#8b8b8b'} scale={2}/></PartSelector>;
+                        { label: "Attack", value: p => <span>{p.Attack.toString()}</span> },
+                        { label: "Durability", value: p => <span>{p.Durability.toString()}</span> },
+                        { label: "Preview", value: p => <ToolPart partName={c.partTexture} materialColor={p.Material.Color} /> },
+                    ]}><ToolPart partName={c.partTexture} materialColor={c.part?.Material.Color || '#8b8b8b'} scale={2} /></PartSelector>;
             })}
 
             {this.state.selectedTool.getPartList().handle.map(c => {
-                return <PartSelector 
+                return <PartSelector
                     parts={this.props.partList.handle as HandlePart[]}
                     selectPart={(p) => {
                         this.state.selectedTool?.replaceHandle(c, p);
-                        this.setState({switcher:this.state.switcher})
+                        this.setState({ switcher: this.state.switcher })
                     }}
                     content={[
-                        {label: "Durability", value: p => <span>{p.Durability.toString()}</span>},
-                        {label: "Modifier", value: p => <span>{p.Modifier.toString()}</span>},
-                        {label: "Preview", value: p => <ToolPart partName={c.partTexture} materialColor={p.Material.Color}/>},
-                    ]}><ToolPart partName={c.partTexture} materialColor={c.part?.Material.Color || '#8b8b8b'} scale={2}/></PartSelector>;
+                        { label: "Durability", value: p => <span>{p.Durability.toString()}</span> },
+                        { label: "Modifier", value: p => <span>{p.Modifier.toString()}</span> },
+                        { label: "Preview", value: p => <ToolPart partName={c.partTexture} materialColor={p.Material.Color} /> },
+                    ]}><ToolPart partName={c.partTexture} materialColor={c.part?.Material.Color || '#8b8b8b'} scale={2} /></PartSelector>;
             })}
 
             {this.state.selectedTool.getPartList().extra.map(c => {
-                return <PartSelector 
+                return <PartSelector
                     parts={this.props.partList.extra as ExtraPart[]}
                     selectPart={(p) => {
                         this.state.selectedTool?.replaceExtra(c, p);
-                        this.setState({switcher:this.state.switcher})
+                        this.setState({ switcher: this.state.switcher })
                     }}
                     content={[
-                        {label: "Durability", value: p => <span>{p.ExtraDurability.toString()}</span>},
-                        {label: "Preview", value: p => <ToolPart partName={c.partTexture} materialColor={p.Material.Color}/>},
-                    ]}><ToolPart partName={c.partTexture} materialColor={c.part?.Material.Color || '#8b8b8b'} scale={2}/></PartSelector>;
+                        { label: "Durability", value: p => <span>{p.ExtraDurability.toString()}</span> },
+                        { label: "Preview", value: p => <ToolPart partName={c.partTexture} materialColor={p.Material.Color} /> },
+                    ]}><ToolPart partName={c.partTexture} materialColor={c.part?.Material.Color || '#8b8b8b'} scale={2} /></PartSelector>;
             })}
         </React.Fragment>;
     }
