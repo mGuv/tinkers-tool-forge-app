@@ -22,6 +22,10 @@ export default class Pickaxe extends AbstractTool {
         });
     }
 
+    public isBuilt(): boolean {
+        return !(!this.head[0].part || !this.extra[0].part || !this.handle[0].part);
+    }
+
     public getDurability(): number {
         if (!this.head[0].part || !this.extra[0].part || !this.handle[0].part) {
             return 0;

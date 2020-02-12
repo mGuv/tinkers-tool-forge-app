@@ -24,6 +24,10 @@ export default class Shuriken extends AbstractTool {
         );
     }
 
+    public isBuilt(): boolean {
+        return !(!this.head[0].part || !this.head[1].part || !this.head[2].part || !this.head[3].part);
+    }
+
     public getDurability() {
         return 6;
     }

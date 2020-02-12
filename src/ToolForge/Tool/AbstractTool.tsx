@@ -70,6 +70,10 @@ export default abstract class AbstractTool {
     }
 
     public largePreview() {
+        if (!this.isBuilt()) {
+            return '';
+        }
+
         return <div className={styles.tool}>
             {this.head.map(this.renderPartColored)}
             {this.handle.map(this.renderPartColored)}
@@ -102,4 +106,6 @@ export default abstract class AbstractTool {
     }
 
     abstract getDurability(): number;
+
+    abstract isBuilt(): boolean;
 }

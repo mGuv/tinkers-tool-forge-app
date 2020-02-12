@@ -33,11 +33,15 @@ export default class Hammer extends AbstractTool {
         }
 
         const base = (
-            this.head[0].part?.Durability * 2
+            this.head[0].part.Durability * 2
             + this.head[1].part?.Durability
             + this.head[2].part?.Durability
         ) / 4;
-        
+
         return Math.floor((base * this.handle[0].part.Modifier + this.handle[0].part.Durability) * 2.5);
+    }
+
+    public isBuilt(): boolean {
+        return !(!this.head[0].part || !this.head[1].part || !this.head[2].part || !this.handle[0].part);
     }
 }
