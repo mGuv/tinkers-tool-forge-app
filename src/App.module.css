@@ -26,9 +26,11 @@ input[type=button] {
     cursor: pointer;
 }
 
+input[type=text]:focus {
+    background-color: #7779b1;
+}
 
-
-input:focus, input:hover {
+input:hover {
     background-color: #7779b1;
 }
 

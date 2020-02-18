@@ -1,0 +1,30 @@
+.button {
+    background-color: #6b6b6b;
+    border-top: 2px solid #aaaaaa;
+    border-left: 2px solid #aaaaaa;
+    border-right: 2px solid #5a5a5a;
+    border-bottom: 2px solid #5a5a5a;
+    cursor: pointer;
+    font-family: "Minecraft";
+    color:#f0f0f0;
+    padding: 8px;
+    margin-left: 1em;
+
+}
+
+.button.button-depressed {
+    background-color: #545252;
+    border-top: 2px solid #5a5a5a;
+    border-left: 2px solid #5a5a5a;
+    border-right: 2px solid #aaaaaa;
+    border-bottom: 2px solid #aaaaaa;
+}
+
+.button.button.button-depressed:hover {
+    background-color: #545252;
+    cursor: auto;
+}
+
+.button:hover {
+    background-color: #7779b1;
+}

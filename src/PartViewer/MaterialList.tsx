@@ -1,10 +1,12 @@
 import React, { ChangeEvent } from 'react';
 import SortableTable from '../SortableTable';
 import Material from '../Materials/Material';
+import Button from '../Button';
 
 interface Props {
     materials: Material[],
-    toggleMaterial: (material:Material) => void,
+    hideMaterial: (material:Material) => void,
+    showMaterial: (material:Material) => void,
     showAll: () => void,
     hideAll: () => void
 }
@@ -35,10 +37,13 @@ class MaterialList extends React.PureComponent<Props, State> {
         return (
             <div>
                 <div style={{display: 'flex', marginTop: "1em", marginBottom: "1em"}}><input style={{marginRight: '1em'}} onChange={this.updateFilter.bind(this)} autoFocus placeholder="Filter Materials..."/><input style={{marginRight: '1em'}} type="button" value="Show All" onClick={this.props.showAll}/><input style={{marginRight: '1em'}} type="button" value="Hide All" onClick={this.props.hideAll}/></div>
-                <SortableTable columnInfo={[["Colour", false], "Name", ["Visibility", false]]} data={this.props.materials.filter(material => material.Name.indexOf(this.state.materialFilter) >= 0).map(material => ({
+                <SortableTable columnInfo={[["Colour", false], "Name", ["", false]]} data={this.props.materials.filter(material => material.Name.indexOf(this.state.materialFilter) >= 0).map(material => ({
                     Colour: <div style={{width: "16px", height: "16px", backgroundColor: material.Color}}/>,
                     Name: material.Name,
-                    "Visibility": <i onClick={() => {this.props.toggleMaterial(material)}} className={material.Hidden ? 'fas fa-eye-slash' :'fas fa-eye'}/>
+                    "": <div>
+                            <Button label="Show" depressed={!material.Hidden} onClick={() => {this.props.showMaterial(material)}} />
+                            <Button label="Hide" depressed={material.Hidden} onClick={() => {this.props.hideMaterial(material)}} />
+                        </div>
                 }))} />
             </div>
         );

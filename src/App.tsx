@@ -43,21 +43,30 @@ class App extends React.PureComponent<Props, State> {
     };
   }
 
-  private toggleMaterial(material:Material) {
-    material.Hidden = !material.Hidden;
-    const activeMaterials:Material[] = Array.from(this.state.activeMaterials);
-
-    if(!material.Hidden) {
-      activeMaterials.push(material);
-    } else {
-      activeMaterials.splice(activeMaterials.indexOf(material), 1);
+  private hideMaterial(material:Material) {
+    if(material.Hidden) {
+      return;
     }
-    
+
+    material.Hidden = true;
+    const activeMaterials:Material[] = Array.from(this.state.activeMaterials);
+    activeMaterials.splice(activeMaterials.indexOf(material), 1);
     this.setState({
-      ...this.state,
-      activeMaterials 
+      activeMaterials
     });
-    
+  }
+
+  private showMaterial(material:Material) {
+    if(!material.Hidden) {
+      return;
+    }
+
+    material.Hidden = false;
+    const activeMaterials:Material[] = Array.from(this.state.activeMaterials);
+    activeMaterials.push(material);
+    this.setState({
+      activeMaterials
+    });
   }
 
   private showAllMaterials() {
@@ -92,28 +101,28 @@ class App extends React.PureComponent<Props, State> {
         <div className={styles.appBody}>
         <Switch>
           <Route path="/materials">
-            <MaterialList materials={this.state.allMaterials} hideAll={this.hideAllMaterials.bind(this)} showAll={this.showAllMaterials.bind(this)} toggleMaterial={this.toggleMaterial.bind(this)}/>
+            <MaterialList showMaterial={this.showMaterial.bind(this)} hideMaterial={this.hideMaterial.bind(this)} materials={this.state.allMaterials} hideAll={this.hideAllMaterials.bind(this)} showAll={this.showAllMaterials.bind(this)}/>
           </Route>
           <Route path="/bowLimbs">
-            <BowPartList bowParts={bowParts}/>
+            <BowPartList hideMaterial={this.hideMaterial.bind(this)} bowParts={bowParts}/>
           </Route>
           <Route path="/bowStrings">
-            <BowStringList bowStringParts={bowStringParts}/>
+            <BowStringList hideMaterial={this.hideMaterial.bind(this)} bowStringParts={bowStringParts}/>
           </Route>
           <Route path="/extras">
-            <ExtraList extraParts={extraParts}/>
+            <ExtraList hideMaterial={this.hideMaterial.bind(this)} extraParts={extraParts}/>
           </Route>
           <Route path="/fletchings">
-            <FletchingList fletchingParts={fletchingParts}/>
+            <FletchingList hideMaterial={this.hideMaterial.bind(this)} fletchingParts={fletchingParts}/>
           </Route>
           <Route path="/handles">
-            <HandleList handleParts={handleParts}/>
+            <HandleList hideMaterial={this.hideMaterial.bind(this)} handleParts={handleParts}/>
           </Route>
           <Route path="/heads">
-            <HeadList headParts={headParts}/>
+            <HeadList hideMaterial={this.hideMaterial.bind(this)} headParts={headParts}/>
           </Route>
           <Route path="/shafts">
-            <ShaftList shaftParts={shaftParts}/>
+            <ShaftList hideMaterial={this.hideMaterial.bind(this)} shaftParts={shaftParts}/>
           </Route>
           <Route path="/toolforge">
             <Toolforge
