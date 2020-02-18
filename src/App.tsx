@@ -30,6 +30,13 @@ interface Props {
 interface State {
   allMaterials: Material[],
   activeMaterials: Material[],
+  activeBowParts: BowPart[],
+  activeBowStringParts: BowStringPart[],
+  activeExtraParts: ExtraPart[],
+  activeFletchlingParts: FletchingPart[],
+  activeHandleParts: HandlePart[],
+  activeHeadParts:HeadPart[],
+  activeShaftParts:ShaftPart[]
 }
 
 class App extends React.PureComponent<Props, State> {
@@ -40,7 +47,66 @@ class App extends React.PureComponent<Props, State> {
     this.state = {
       allMaterials: MaterialService.GetInstance().GetAll(),
       activeMaterials: MaterialService.GetInstance().GetAll(),
+      activeBowParts: [],
+      activeBowStringParts: [],
+      activeExtraParts: [],
+      activeFletchlingParts: [],
+      activeHandleParts: [],
+      activeHeadParts: [],
+      activeShaftParts: []
     };
+  }
+
+  private addBowPart(bowPart:BowPart) {
+    if(bowPart.Included) {
+      return;
+    }
+
+    bowPart.Included = true;
+    const activeBowParts:BowPart[] = Array.from(this.state.activeBowParts);
+    activeBowParts.push(bowPart);
+    this.setState({
+      activeBowParts
+    });
+  }
+
+  private removeHeadPart(headPart:HeadPart) {
+    if(!headPart.Included) {
+      return;
+    }
+
+    headPart.Included = false;
+    const activeHeadParts:HeadPart[] = Array.from(this.state.activeHeadParts);
+    activeHeadParts.splice(activeHeadParts.indexOf(headPart), 1);
+    this.setState({
+      activeHeadParts
+    });
+  }
+
+  private addHeadPart(headPart:HeadPart) {
+    if(headPart.Included) {
+      return;
+    }
+
+    headPart.Included = true;
+    const activeHeadParts:HeadPart[] = Array.from(this.state.activeHeadParts);
+    activeHeadParts.push(headPart);
+    this.setState({
+      activeHeadParts
+    });
+  }
+
+  private removeBowPart(bowPart:BowPart) {
+    if(!bowPart.Included) {
+      return;
+    }
+
+    bowPart.Included = false;
+    const activeBowParts:BowPart[] = Array.from(this.state.activeBowParts);
+    activeBowParts.splice(activeBowParts.indexOf(bowPart), 1);
+    this.setState({
+      activeBowParts
+    });
   }
 
   private hideMaterial(material:Material) {
@@ -104,7 +170,7 @@ class App extends React.PureComponent<Props, State> {
             <MaterialList showMaterial={this.showMaterial.bind(this)} hideMaterial={this.hideMaterial.bind(this)} materials={this.state.allMaterials} hideAll={this.hideAllMaterials.bind(this)} showAll={this.showAllMaterials.bind(this)}/>
           </Route>
           <Route path="/bowLimbs">
-            <BowPartList hideMaterial={this.hideMaterial.bind(this)} bowParts={bowParts}/>
+            <BowPartList addBowPart={this.addBowPart.bind(this)} removeBowPart={this.removeBowPart.bind(this)} hideMaterial={this.hideMaterial.bind(this)} bowParts={bowParts}/>
           </Route>
           <Route path="/bowStrings">
             <BowStringList hideMaterial={this.hideMaterial.bind(this)} bowStringParts={bowStringParts}/>
@@ -119,7 +185,7 @@ class App extends React.PureComponent<Props, State> {
             <HandleList hideMaterial={this.hideMaterial.bind(this)} handleParts={handleParts}/>
           </Route>
           <Route path="/heads">
-            <HeadList hideMaterial={this.hideMaterial.bind(this)} headParts={headParts}/>
+            <HeadList addHeadPart={this.addHeadPart.bind(this)} removeHeadPart={this.removeHeadPart.bind(this)} hideMaterial={this.hideMaterial.bind(this)} headParts={headParts}/>
           </Route>
           <Route path="/shafts">
             <ShaftList hideMaterial={this.hideMaterial.bind(this)} shaftParts={shaftParts}/>
@@ -127,7 +193,7 @@ class App extends React.PureComponent<Props, State> {
           <Route path="/toolforge">
             <Toolforge
               partList={{
-                head: headParts,
+                head: this.state.activeHeadParts,
                 handle: handleParts,
                 bow: bowParts,
                 bowstring: bowStringParts,

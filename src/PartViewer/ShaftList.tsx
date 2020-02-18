@@ -16,7 +16,7 @@ const ShaftList: React.FunctionComponent<Props> = ({ shaftParts, hideMaterial })
             "Bonus Ammo": shaftPart.BonusAmmo,
             Modifier: shaftPart.Modifier,
             Traits: shaftPart.Traits.join(", "),
-            "": <Button label="Hide" onClick={()=>{hideMaterial(shaftPart.Material)}}/>
+            "": <Button label="Remove" onClick={()=>{hideMaterial(shaftPart.Material)}}/>
         }))} />
     </div>
 )

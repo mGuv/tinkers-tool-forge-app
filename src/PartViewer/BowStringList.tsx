@@ -15,7 +15,7 @@ const BowStringList: React.FunctionComponent<Props> = ({ bowStringParts, hideMat
             Name: bowStringPart.Material.Name,
             Modifier: bowStringPart.Modifier,
             Traits: bowStringPart.Traits.join(", "),
-            "": <Button label="Hide" onClick={()=>{hideMaterial(bowStringPart.Material)}}/>
+            "": <Button label="Remove" onClick={()=>{hideMaterial(bowStringPart.Material)}}/>
         }))} />
     </div>
 )

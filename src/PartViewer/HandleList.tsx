@@ -16,7 +16,7 @@ const HandleList: React.FunctionComponent<Props> = ({ handleParts, hideMaterial 
             Durability: handlePart.Durability,
             Modifier: handlePart.Modifier,
             Traits: handlePart.Traits.join(", "),
-            "": <Button label="Hide" onClick={()=>{hideMaterial(handlePart.Material)}}/>
+            "": <Button label="Remove" onClick={()=>{hideMaterial(handlePart.Material)}}/>
         }))} />
     </div>
 )

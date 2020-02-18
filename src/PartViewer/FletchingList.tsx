@@ -16,7 +16,7 @@ const FletchingList: React.FunctionComponent<Props> = ({ fletchingParts, hideMat
             Accuracy: fletchingPart.Accuracy,
             Modifer: fletchingPart.Modifier,
             Traits: fletchingPart.Traits.join(", "),
-            "": <Button label="Hide" onClick={()=>{hideMaterial(fletchingPart.Material)}}/>
+            "": <Button label="Remove" onClick={()=>{hideMaterial(fletchingPart.Material)}}/>
         }))} />
     </div>
 )

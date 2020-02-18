@@ -15,7 +15,7 @@ const ExtraList: React.FunctionComponent<Props> = ({ extraParts, hideMaterial })
             Name: extraPart.Material.Name,
             "Extra Durability": extraPart.ExtraDurability,
             Traits: extraPart.Traits.join(", "),
-            "": <Button label="Hide" onClick={()=>{hideMaterial(extraPart.Material)}}/>
+            "": <Button label="Remove" onClick={()=>{hideMaterial(extraPart.Material)}}/>
         }))} />
     </div>
 )
