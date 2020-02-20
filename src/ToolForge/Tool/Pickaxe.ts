@@ -1,36 +1,43 @@
-import AbstractTool from "./AbstractTool";
+import AbstractTool, { PartRequirement } from "./AbstractTool";
+import Part from "../../Materials/Parts/Part";
+import HeadPart from "../../Materials/Parts/HeadPart";
+import ExtraPart from "../../Materials/Parts/ExtraPart";
+import HandlePart from "../../Materials/Parts/HandlePart";
+
+const headPart: PartRequirement = {
+    type: "HEAD",
+    partTexture: 'pickaxe/head',
+    componentTexture: 'pickaxe/head',
+}
+
+const extraPart: PartRequirement = {
+    type: "EXTRA",
+    partTexture: 'part/binding',
+    componentTexture: 'pickaxe/binding',
+}
+
+const handlePart: PartRequirement = {
+    type: "HANDLE",
+    partTexture: 'part/tool_rod',
+    componentTexture: 'pickaxe/handle',
+}
 
 export default class Pickaxe extends AbstractTool {
     public constructor() {
         super('Pickaxe');
 
-        this.setHead(
-            {
-                partTexture: 'pickaxe/head',
-                componentTexture: 'pickaxe/head',
-            }
-        );
-
-        this.setExtra({
-            partTexture: 'part/binding',
-            componentTexture: 'pickaxe/binding',
-        });
-
-        this.setHandle({
-            partTexture: 'part/tool_rod',
-            componentTexture: 'pickaxe/handle',
-        });
+        this.setRequirements(headPart, extraPart, handlePart)
     }
 
-    public isBuilt(): boolean {
-        return !(!this.head[0].part || !this.extra[0].part || !this.handle[0].part);
-    }
-
-    public getDurability(): number {
-        if (!this.head[0].part || !this.extra[0].part || !this.handle[0].part) {
+    public getDurability(selectedParts: Map<PartRequirement, Part>): number {
+        if (!this.isBuilt(selectedParts)) {
             return 0;
         }
 
-        return Math.floor((this.head[0].part.Durability + this.extra[0].part.ExtraDurability) * this.handle[0].part.Modifier + this.handle[0].part.Durability);
+        const head = selectedParts.get(headPart) as HeadPart;
+        const extra = selectedParts.get(extraPart) as ExtraPart;
+        const handle = selectedParts.get(handlePart) as HandlePart;
+
+        return Math.floor((head.Durability + extra.ExtraDurability) * handle.Modifier + handle.Durability);
     }
 }

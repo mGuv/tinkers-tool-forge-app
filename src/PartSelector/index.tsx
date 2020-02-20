@@ -57,7 +57,7 @@ class PartSelector<TPart extends Part> extends React.PureComponent<Props<TPart>,
             <div ref={this.containerRef} tabIndex={0} onBlur={this.close.bind(this)} onFocus={this.open.bind(this)} className={styles.container}>
                 {this.props.children}
                 {
-                    this.state.isOpen ? (<div className={styles.partList}> {this.props.parts.map(p => {
+                    this.state.isOpen && (<div className={styles.partList}> {this.props.parts.map(p => {
                         return (<div className={styles.partRow} onClick={() => {this.onItemSelected(p)}}>
                             <div style={{gridColumn: "span 1", width: "16px", height:"16px", backgroundColor: p.Material.Color}}></div><div style={{gridColumn: "span 1"}}>{p.Material.Name}</div>
                             {
@@ -65,7 +65,7 @@ class PartSelector<TPart extends Part> extends React.PureComponent<Props<TPart>,
                             }
                             </div>
                         )}
-                    )}</div>) : <React.Fragment/>
+                    )}</div>)
                 }
             </div>
         )
