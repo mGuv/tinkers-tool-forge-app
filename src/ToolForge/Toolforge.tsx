@@ -118,7 +118,7 @@ function buildPartPickers(selectedTool: AbstractTool, partList: { [key: string]:
                             { label: "Durability", value: p => <span>{p.Durability.toString()}</span> },
                             { label: "Preview", value: p => <ToolPart partName={c.partTexture} materialColor={p.Material.Color} /> },
                         ]}><ToolPart partName={c.partTexture} materialColor={selectedParts.get(c)?.Material.Color || '#8b8b8b'} scale={2} /></PartSelector>;
-                case "EXTRA":
+                case "HANDLE":
                     return <PartSelector
                         parts={partList.handle as HandlePart[]}
                         selectPart={(p) => {
@@ -129,7 +129,7 @@ function buildPartPickers(selectedTool: AbstractTool, partList: { [key: string]:
                             { label: "Modifier", value: p => <span>{p.Modifier.toString()}</span> },
                             { label: "Preview", value: p => <ToolPart partName={c.partTexture} materialColor={p.Material.Color} /> },
                         ]}><ToolPart partName={c.partTexture} materialColor={selectedParts.get(c)?.Material.Color || '#8b8b8b'} scale={2} /></PartSelector>;
-                case "HANDLE":
+                case "EXTRA":
                     return <PartSelector
                         parts={partList.extra as ExtraPart[]}
                         selectPart={(p) => {
