@@ -11,7 +11,7 @@ interface Content<TPart> {
 interface Props<TPart extends Part> {
     parts:TPart[],
     selectPart: (part:TPart) => void,
-    content: Content<TPart>[]
+    content: (part:TPart) => JSX.Element
 }
 
 interface State {
@@ -56,7 +56,8 @@ class PartSelector<TPart extends Part> extends React.PureComponent<Props<TPart>,
                         return (<div className={styles.partRow} onClick={(ev) => {ev.stopPropagation(); this.onItemSelected(p)}}>
                             <div style={{gridColumn: "span 1", width: "16px", height:"16px", backgroundColor: p.Material.Color}}></div><div style={{gridColumn: "span 1"}}>{p.Material.Name}</div>
                             {
-                                this.props.content.map(c => <div style={{gridColumn: "span 1"}}>{c.label}: {c.value(p)}</div>)
+                                //this.props.content.map(c => <div style={{gridColumn: "span 1"}}>{c.label}: {c.value(p)}</div>)
+                                this.props.content(p)
                             }
                             </div>
                         )}

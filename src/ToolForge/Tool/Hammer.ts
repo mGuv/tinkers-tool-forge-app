@@ -4,25 +4,25 @@ import HeadPart from "../../Materials/Parts/HeadPart";
 import HandlePart from "../../Materials/Parts/HandlePart";
 
 const headPart: PartRequirement = {
-    type: "HEAD",
+    type: "head",
     partTexture: 'hammer/head',
     componentTexture: 'hammer/head',
 }
 
 const plate1Part: PartRequirement = {
-    type: "HEAD",
+    type: "head",
     partTexture: 'part/large_plate',
     componentTexture: 'hammer/front',
 }
 
 const plate2Part: PartRequirement = {
-    type: "HEAD",
+    type: "head",
     partTexture: 'part/large_plate',
     componentTexture: 'hammer/back',
 }
 
 const handlePart: PartRequirement = {
-    type: "HANDLE",
+    type: "handle",
     partTexture: 'part/tool_rod',
     componentTexture: 'hammer/handle',
 };

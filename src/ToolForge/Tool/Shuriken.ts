@@ -6,22 +6,22 @@ export default class Shuriken extends AbstractTool {
 
         this.setRequirements(
             {
-                type: "HEAD",
+                type: "head",
                 partTexture: "part/knife_blade",
                 componentTexture: "shuriken/shuriken",
             },
             {
-                type: "HEAD",
+                type: "head",
                 partTexture: "part/knife_blade",
                 componentTexture: "shuriken/shuriken2",
             },
             {
-                type: "HEAD",
+                type: "head",
                 partTexture: "part/knife_blade",
                 componentTexture: "shuriken/shuriken3",
             },
             {
-                type: "HEAD",
+                type: "head",
                 partTexture: "part/knife_blade",
                 componentTexture: "shuriken/shuriken4",
             }

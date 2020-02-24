@@ -5,19 +5,19 @@ import ExtraPart from "../../Materials/Parts/ExtraPart";
 import HandlePart from "../../Materials/Parts/HandlePart";
 
 const headPart: PartRequirement = {
-    type: "HEAD",
+    type: "head",
     partTexture: 'pickaxe/head',
     componentTexture: 'pickaxe/head',
 }
 
 const extraPart: PartRequirement = {
-    type: "EXTRA",
+    type: "extra",
     partTexture: 'part/binding',
     componentTexture: 'pickaxe/binding',
 }
 
 const handlePart: PartRequirement = {
-    type: "HANDLE",
+    type: "handle",
     partTexture: 'part/tool_rod',
     componentTexture: 'pickaxe/handle',
 }

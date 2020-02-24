@@ -3,7 +3,7 @@ import styles from "../Forge.module.css";
 import Part from "../../Materials/Parts/Part";
 
 export interface PartRequirement {
-    type: "HEAD" | "EXTRA" | "HANDLE";
+    type: "head" | "extra" | "handle";
     partTexture: string;
     componentTexture: string;
 }

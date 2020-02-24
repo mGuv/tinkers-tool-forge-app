@@ -5,21 +5,15 @@ import Pickaxe from "./Tool/Pickaxe";
 import Hammer from "./Tool/Hammer";
 import Shuriken from "./Tool/Shuriken";
 import Part from "../Materials/Parts/Part";
+import PartSelector from "../PartSelector";
+import ToolPart from "./ToolPart";
+import RenderPartListContent from "./PartListContent";
 
 import styles from "./Forge.module.css";
-import PartSelector from "../PartSelector";
-import HeadPart from "../Materials/Parts/HeadPart";
-import ToolPart from "./ToolPart";
-import HandlePart from "../Materials/Parts/HandlePart";
-import ExtraPart from "../Materials/Parts/ExtraPart";
+
 
 interface ToolforgeProps {
     partList: { [key: string]: Part[] };
-}
-
-interface ToolforgeState {
-    selectedTool?: AbstractTool;
-    switcher: boolean;
 }
 
 interface ToolIconProps {
@@ -103,46 +97,16 @@ const Toolforge: React.FunctionComponent<ToolforgeProps> = ({partList}) => {
     );
 }
 
-function buildPartPickers(selectedTool: AbstractTool, partList: { [key: string]: Part[] }, selectedParts: Map<PartRequirement, Part>, setSelectedParts: (req: PartRequirement, part: Part) => void ) {
+function buildPartPickers(selectedTool: AbstractTool, partList: { [key: string]: Part[] }, selectedParts: Map<PartRequirement, Part>, setSelectedPart: (req: PartRequirement, part: Part) => void ) {
     return <>
-        {selectedTool.getRequirements().map(c => {
-            switch (c.type) {
-                case "HEAD":
-                    return <PartSelector
-                        parts={partList.head as HeadPart[]}
-                        selectPart={(p) => {
-                            setSelectedParts(c, p);
-                        }}
-                        content={[
-                            { label: "Attack", value: p => <span>{p.Attack.toString()}</span> },
-                            { label: "Durability", value: p => <span>{p.Durability.toString()}</span> },
-                            { label: "Preview", value: p => <ToolPart partName={c.partTexture} materialColor={p.Material.Color} /> },
-                        ]}><ToolPart partName={c.partTexture} materialColor={selectedParts.get(c)?.Material.Color || '#8b8b8b'} scale={2} /></PartSelector>;
-                case "HANDLE":
-                    return <PartSelector
-                        parts={partList.handle as HandlePart[]}
-                        selectPart={(p) => {
-                            setSelectedParts(c, p);
-                        }}
-                        content={[
-                            { label: "Durability", value: p => <span>{p.Durability.toString()}</span> },
-                            { label: "Modifier", value: p => <span>{p.Modifier.toString()}</span> },
-                            { label: "Preview", value: p => <ToolPart partName={c.partTexture} materialColor={p.Material.Color} /> },
-                        ]}><ToolPart partName={c.partTexture} materialColor={selectedParts.get(c)?.Material.Color || '#8b8b8b'} scale={2} /></PartSelector>;
-                case "EXTRA":
-                    return <PartSelector
-                        parts={partList.extra as ExtraPart[]}
-                        selectPart={(p) => {
-                            setSelectedParts(c, p);
-                        }}
-                        content={[
-                            { label: "Durability", value: p => <span>{p.ExtraDurability.toString()}</span> },
-                            { label: "Preview", value: p => <ToolPart partName={c.partTexture} materialColor={p.Material.Color} /> },
-                        ]}><ToolPart partName={c.partTexture} materialColor={selectedParts.get(c)?.Material.Color || '#8b8b8b'} scale={2} /></PartSelector>;
-            }
-            
-            return null;
-        })}
+        {selectedTool.getRequirements().map(c => 
+            <PartSelector
+                parts={partList[c.type]}
+                selectPart={(p) => {
+                    setSelectedPart(c, p);
+                }}
+                content={RenderPartListContent(c)}><ToolPart partName={c.partTexture} materialColor={selectedParts.get(c)?.Material.Color || '#8b8b8b'} scale={2} /></PartSelector>
+        )}
     </>;
 }
 
