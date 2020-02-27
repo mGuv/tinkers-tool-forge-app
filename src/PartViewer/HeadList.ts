@@ -1,7 +1,6 @@
 import HeadPart from '../Materials/Parts/HeadPart';
 
-
-interface headPartData {
+interface HeadPartData {
     Name: string,
     Attack: number,
     Durability: number,
@@ -10,7 +9,7 @@ interface headPartData {
     Traits: string
 }
 
-export const columns: (keyof headPartData | [keyof headPartData, boolean])[] = ["Name", "Attack", "Durability", "Harvest Level", "Harvest Speed", "Traits"];
+export const columns: (keyof HeadPartData | [keyof HeadPartData, boolean])[] = ["Name", "Attack", "Durability", "Harvest Level", "Harvest Speed", "Traits"];
 export const dataTransformer = (part: HeadPart) => ({
     Name: part.Material.Name,
     Attack: part.Attack,
