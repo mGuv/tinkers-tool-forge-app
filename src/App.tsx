@@ -175,12 +175,12 @@ class App extends React.PureComponent<Props, State> {
             <Toolforge
               partList={{
                 head: this.state.activeParts["head"] ? Array.from(this.state.activeParts["head"]?.values()) : [],
-                handle: handleParts,
-                bow: bowParts,
-                bowstring: bowStringParts,
-                extra: extraParts,
-                fletching: fletchingParts,
-                shaft: shaftParts,
+                handle: this.state.activeParts["handle"] ? Array.from(this.state.activeParts["handle"]?.values()) : [],
+                bow: this.state.activeParts["bowLimbs"] ? Array.from(this.state.activeParts["bowLimbs"]?.values()) : [],
+                bowstring: this.state.activeParts["bowString"] ? Array.from(this.state.activeParts["bowString"]?.values()) : [],
+                extra: this.state.activeParts["extra"] ? Array.from(this.state.activeParts["extra"]?.values()) : [],
+                fletching: this.state.activeParts["fletching"] ? Array.from(this.state.activeParts["fletching"]?.values()) : [],
+                shaft: this.state.activeParts["shaft"] ? Array.from(this.state.activeParts["shaft"]?.values()) : [],
               }}
               />
           </Route>
