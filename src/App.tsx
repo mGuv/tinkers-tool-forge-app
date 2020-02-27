@@ -4,18 +4,18 @@ import Material from './Materials/Material';
 import {HashRouter as Router, Switch, Route, Redirect} from 'react-router-dom';
 import {Header} from './Header';
 import BowPart from './Materials/Parts/BowPart';
-import BowPartList from './PartViewer/BowPartList';
-import BowStringList from './PartViewer/BowStringList';
+import {columns as BowColumns, dataTransformer as BowDataTransformer} from './PartViewer/BowPartList';
+import {columns as BowStringColumns, dataTransformer as BowStringDataTransformer} from './PartViewer/BowStringList';
 import BowStringPart from './Materials/Parts/BowStringPart';
-import ExtraList from './PartViewer/ExtraList';
+import {columns as ExtraColumns, dataTransformer as ExtraDataTransformer} from './PartViewer/ExtraList';
 import ExtraPart from './Materials/Parts/ExtraPart';
-import FletchingList from './PartViewer/FletchingList';
+import {columns as FletchingColumns, dataTransformer as FletchingDataTransformer} from './PartViewer/FletchingList';
 import FletchingPart from './Materials/Parts/FletchingPart';
-import HandleList from './PartViewer/HandleList';
+import {columns as HandleColumns, dataTransformer as HandleDataTransformer} from './PartViewer/HandleList';
 import HandlePart from './Materials/Parts/HandlePart';
 import {columns as HeadColumns, dataTransformer as HeadDataTransformer} from './PartViewer/HeadList';
 import HeadPart from './Materials/Parts/HeadPart';
-import ShaftList from './PartViewer/ShaftList';
+import {columns as ShaftColumns, dataTransformer as ShaftDataTransformer} from './PartViewer/ShaftList';
 import ShaftPart from './Materials/Parts/ShaftPart';
 import styles from './App.module.css';
 import Toolforge from './ToolForge/Toolforge';
@@ -189,19 +189,39 @@ class App extends React.PureComponent<Props, State> {
             <MaterialList showMaterial={this.showMaterial.bind(this)} hideMaterial={this.hideMaterial.bind(this)} materials={this.state.allMaterials} hideAll={this.hideAllMaterials.bind(this)} showAll={this.showAllMaterials.bind(this)}/>
           </Route>
           <Route path="/bowLimbs">
-            <BowPartList addBowPart={this.addBowPart.bind(this)} removeBowPart={this.removeBowPart.bind(this)} hideMaterial={this.hideMaterial.bind(this)} bowParts={bowParts}/>
+            <GenericList
+                addPart={this.addPart.bind(this, "bow")} removePart={this.removePart.bind(this, "bow")} hideMaterial={this.hideMaterial.bind(this)} parts={bowParts} includedParts={this.state.activeParts["bow"]}
+                columnInfo={BowColumns}
+                dataTransformer={BowDataTransformer}
+            />
           </Route>
           <Route path="/bowStrings">
-            <BowStringList hideMaterial={this.hideMaterial.bind(this)} bowStringParts={bowStringParts}/>
+            <GenericList
+                addPart={this.addPart.bind(this, "bowString")} removePart={this.removePart.bind(this, "bowString")} hideMaterial={this.hideMaterial.bind(this)} parts={bowStringParts} includedParts={this.state.activeParts["bowString"]}
+                columnInfo={BowStringColumns}
+                dataTransformer={BowStringDataTransformer}
+            />
           </Route>
           <Route path="/extras">
-            <ExtraList hideMaterial={this.hideMaterial.bind(this)} extraParts={extraParts}/>
+            <GenericList
+                addPart={this.addPart.bind(this, "extra")} removePart={this.removePart.bind(this, "extra")} hideMaterial={this.hideMaterial.bind(this)} parts={extraParts} includedParts={this.state.activeParts["extra"]}
+                columnInfo={ExtraColumns}
+                dataTransformer={ExtraDataTransformer}
+            />
           </Route>
           <Route path="/fletchings">
-            <FletchingList hideMaterial={this.hideMaterial.bind(this)} fletchingParts={fletchingParts}/>
+            <GenericList
+                addPart={this.addPart.bind(this, "fletching")} removePart={this.removePart.bind(this, "fletching")} hideMaterial={this.hideMaterial.bind(this)} parts={fletchingParts} includedParts={this.state.activeParts["fletching"]}
+                columnInfo={FletchingColumns}
+                dataTransformer={FletchingDataTransformer}
+            />
           </Route>
           <Route path="/handles">
-            <HandleList hideMaterial={this.hideMaterial.bind(this)} handleParts={handleParts}/>
+            <GenericList
+                addPart={this.addPart.bind(this, "handle")} removePart={this.removePart.bind(this, "handle")} hideMaterial={this.hideMaterial.bind(this)} parts={handleParts} includedParts={this.state.activeParts["handle"]}
+                columnInfo={HandleColumns}
+                dataTransformer={HandleDataTransformer}
+            />
           </Route>
           <Route path="/heads">
             <GenericList
@@ -209,10 +229,13 @@ class App extends React.PureComponent<Props, State> {
                 columnInfo={HeadColumns}
                 dataTransformer={HeadDataTransformer}
             />
-            {/* <HeadList addPart={this.addPart.bind(this, "head")} removePart={this.removePart.bind(this, "head")} hideMaterial={this.hideMaterial.bind(this)} parts={headParts} includedParts={this.state.activeParts["head"]}/> */}
           </Route>
           <Route path="/shafts">
-            <ShaftList hideMaterial={this.hideMaterial.bind(this)} shaftParts={shaftParts}/>
+            <GenericList
+                addPart={this.addPart.bind(this, "shaft")} removePart={this.removePart.bind(this, "shaft")} hideMaterial={this.hideMaterial.bind(this)} parts={shaftParts} includedParts={this.state.activeParts["shaft"]}
+                columnInfo={ShaftColumns}
+                dataTransformer={ShaftDataTransformer}
+            />
           </Route>
           <Route path="/toolforge">
             <Toolforge
