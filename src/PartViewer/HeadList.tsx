@@ -1,32 +1,42 @@
 import React from 'react';
-import SortableTable from '../SortableTable';
 import HeadPart from '../Materials/Parts/HeadPart';
 import Material from '../Materials/Material';
-import Button from '../Button';
+import Part from '../Materials/Parts/Part';
+import GenericList from './GenericList';
 
 interface Props {
-    headParts: HeadPart[],
+    parts: HeadPart[],
     hideMaterial: (material:Material) => void,
-    addHeadPart: (headPart:HeadPart) => void,
-    removeHeadPart: (headPart: HeadPart) => void
+    addPart: (part:Part) => void,
+    removePart: (part: Part) => void
+    includedParts: Set<Part> | undefined
 }
 
-const HeadList: React.FunctionComponent<Props> = ({ headParts, hideMaterial, addHeadPart, removeHeadPart }) => (
-    <div>
-        <SortableTable columnInfo={["Name", "Attack", "Durability", "Harvest Level", "Harvest Speed", "Traits", ["", false]]} data={headParts.map(headPart => ({
-            Name: headPart.Material.Name,
-            Attack: headPart.Attack,
-            Durability: headPart.Durability,
-            "Harvest Level": headPart.HarvestLevel,
-            "Harvest Speed": headPart.MiningSpeed,
-            Traits: headPart.Traits.join(", "),
-            "": <div>
-            <Button depressed={headPart.Included} label="Include" onClick={() => {addHeadPart(headPart)}}/>
-            <Button depressed={!headPart.Included} label="Exclude" onClick={() => {removeHeadPart(headPart)}}/>
-            <Button label="Remove" onClick={()=>{removeHeadPart(headPart); hideMaterial(headPart.Material)}}/>
-        </div>
-        }))} />
-    </div>
+interface headPartData {
+    Name: string,
+    Attack: number,
+    Durability: number,
+    "Harvest Level": number,
+    "Harvest Speed": number,
+    Traits: string
+}
+
+const columns: (keyof headPartData | [keyof headPartData, boolean])[] = ["Name", "Attack", "Durability", "Harvest Level", "Harvest Speed", "Traits"];
+const dataTransformer = (part: HeadPart) => ({
+    Name: part.Material.Name,
+    Attack: part.Attack,
+    Durability: part.Durability,
+    "Harvest Level": part.HarvestLevel,
+    "Harvest Speed": part.MiningSpeed,
+    Traits: part.Traits.join(", ")
+});
+
+const HeadList: React.FunctionComponent<Props> = (props) => (
+    <GenericList
+        {...props}
+        columnInfo={columns}
+        dataTransformer={dataTransformer}
+    />
 )
 
 export default HeadList;

@@ -20,6 +20,7 @@ import ShaftPart from './Materials/Parts/ShaftPart';
 import styles from './App.module.css';
 import Toolforge from './ToolForge/Toolforge';
 import MaterialList from './PartViewer/MaterialList';
+import Part from './Materials/Parts/Part';
 
 require("typeface-minecraft");
 
@@ -36,7 +37,8 @@ interface State {
   activeFletchlingParts: FletchingPart[],
   activeHandleParts: HandlePart[],
   activeHeadParts:HeadPart[],
-  activeShaftParts:ShaftPart[]
+  activeShaftParts:ShaftPart[],
+  activeParts: { [key: string]: Set<Part> }
 }
 
 class App extends React.PureComponent<Props, State> {
@@ -53,7 +55,8 @@ class App extends React.PureComponent<Props, State> {
       activeFletchlingParts: [],
       activeHandleParts: [],
       activeHeadParts: [],
-      activeShaftParts: []
+      activeShaftParts: [],
+      activeParts: {}
     };
   }
 
@@ -107,6 +110,21 @@ class App extends React.PureComponent<Props, State> {
     this.setState({
       activeBowParts
     });
+  }
+
+  private addPart<TPart>(key: string, part: Part) {
+    const set = this.state.activeParts[key] || new Set();
+    const newSet = new Set(set.add(part))
+    const clone = {...this.state.activeParts, [key]: newSet}
+    this.setState({activeParts: clone});
+  }
+
+  private removePart(key: string, part: Part) {
+    const set = this.state.activeParts[key] || new Set();
+    set.delete(part);
+    const newSet = new Set(set)
+    const clone = {...this.state.activeParts, [key]: newSet}
+    this.setState({activeParts: clone});
   }
 
   private hideMaterial(material:Material) {
@@ -185,7 +203,7 @@ class App extends React.PureComponent<Props, State> {
             <HandleList hideMaterial={this.hideMaterial.bind(this)} handleParts={handleParts}/>
           </Route>
           <Route path="/heads">
-            <HeadList addHeadPart={this.addHeadPart.bind(this)} removeHeadPart={this.removeHeadPart.bind(this)} hideMaterial={this.hideMaterial.bind(this)} headParts={headParts}/>
+            <HeadList addPart={this.addPart.bind(this, "head")} removePart={this.removePart.bind(this, "head")} hideMaterial={this.hideMaterial.bind(this)} parts={headParts} includedParts={this.state.activeParts["head"]}/>
           </Route>
           <Route path="/shafts">
             <ShaftList hideMaterial={this.hideMaterial.bind(this)} shaftParts={shaftParts}/>
@@ -193,7 +211,7 @@ class App extends React.PureComponent<Props, State> {
           <Route path="/toolforge">
             <Toolforge
               partList={{
-                head: headParts,
+                head: this.state.activeParts["head"] ? Array.from(this.state.activeParts["head"]?.values()) : [],
                 handle: handleParts,
                 bow: bowParts,
                 bowstring: bowStringParts,
