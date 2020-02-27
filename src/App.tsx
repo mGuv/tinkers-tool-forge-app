@@ -32,13 +32,6 @@ interface Props {
 interface State {
   allMaterials: Material[],
   activeMaterials: Material[],
-  activeBowParts: BowPart[],
-  activeBowStringParts: BowStringPart[],
-  activeExtraParts: ExtraPart[],
-  activeFletchlingParts: FletchingPart[],
-  activeHandleParts: HandlePart[],
-  activeHeadParts:HeadPart[],
-  activeShaftParts:ShaftPart[],
   activeParts: { [key: string]: Set<Part> }
 }
 
@@ -50,67 +43,8 @@ class App extends React.PureComponent<Props, State> {
     this.state = {
       allMaterials: MaterialService.GetInstance().GetAll(),
       activeMaterials: MaterialService.GetInstance().GetAll(),
-      activeBowParts: [],
-      activeBowStringParts: [],
-      activeExtraParts: [],
-      activeFletchlingParts: [],
-      activeHandleParts: [],
-      activeHeadParts: [],
-      activeShaftParts: [],
       activeParts: {}
     };
-  }
-
-  private addBowPart(bowPart:BowPart) {
-    if(bowPart.Included) {
-      return;
-    }
-
-    bowPart.Included = true;
-    const activeBowParts:BowPart[] = Array.from(this.state.activeBowParts);
-    activeBowParts.push(bowPart);
-    this.setState({
-      activeBowParts
-    });
-  }
-
-  private removeHeadPart(headPart:HeadPart) {
-    if(!headPart.Included) {
-      return;
-    }
-
-    headPart.Included = false;
-    const activeHeadParts:HeadPart[] = Array.from(this.state.activeHeadParts);
-    activeHeadParts.splice(activeHeadParts.indexOf(headPart), 1);
-    this.setState({
-      activeHeadParts
-    });
-  }
-
-  private addHeadPart(headPart:HeadPart) {
-    if(headPart.Included) {
-      return;
-    }
-
-    headPart.Included = true;
-    const activeHeadParts:HeadPart[] = Array.from(this.state.activeHeadParts);
-    activeHeadParts.push(headPart);
-    this.setState({
-      activeHeadParts
-    });
-  }
-
-  private removeBowPart(bowPart:BowPart) {
-    if(!bowPart.Included) {
-      return;
-    }
-
-    bowPart.Included = false;
-    const activeBowParts:BowPart[] = Array.from(this.state.activeBowParts);
-    activeBowParts.splice(activeBowParts.indexOf(bowPart), 1);
-    this.setState({
-      activeBowParts
-    });
   }
 
   private addPart<TPart>(key: string, part: Part) {
