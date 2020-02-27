@@ -13,7 +13,7 @@ import FletchingList from './PartViewer/FletchingList';
 import FletchingPart from './Materials/Parts/FletchingPart';
 import HandleList from './PartViewer/HandleList';
 import HandlePart from './Materials/Parts/HandlePart';
-import HeadList from './PartViewer/HeadList';
+import {columns as HeadColumns, dataTransformer as HeadDataTransformer} from './PartViewer/HeadList';
 import HeadPart from './Materials/Parts/HeadPart';
 import ShaftList from './PartViewer/ShaftList';
 import ShaftPart from './Materials/Parts/ShaftPart';
@@ -21,6 +21,7 @@ import styles from './App.module.css';
 import Toolforge from './ToolForge/Toolforge';
 import MaterialList from './PartViewer/MaterialList';
 import Part from './Materials/Parts/Part';
+import GenericList from './PartViewer/GenericList';
 
 require("typeface-minecraft");
 
@@ -203,7 +204,12 @@ class App extends React.PureComponent<Props, State> {
             <HandleList hideMaterial={this.hideMaterial.bind(this)} handleParts={handleParts}/>
           </Route>
           <Route path="/heads">
-            <HeadList addPart={this.addPart.bind(this, "head")} removePart={this.removePart.bind(this, "head")} hideMaterial={this.hideMaterial.bind(this)} parts={headParts} includedParts={this.state.activeParts["head"]}/>
+            <GenericList
+                addPart={this.addPart.bind(this, "head")} removePart={this.removePart.bind(this, "head")} hideMaterial={this.hideMaterial.bind(this)} parts={headParts} includedParts={this.state.activeParts["head"]}
+                columnInfo={HeadColumns}
+                dataTransformer={HeadDataTransformer}
+            />
+            {/* <HeadList addPart={this.addPart.bind(this, "head")} removePart={this.removePart.bind(this, "head")} hideMaterial={this.hideMaterial.bind(this)} parts={headParts} includedParts={this.state.activeParts["head"]}/> */}
           </Route>
           <Route path="/shafts">
             <ShaftList hideMaterial={this.hideMaterial.bind(this)} shaftParts={shaftParts}/>
