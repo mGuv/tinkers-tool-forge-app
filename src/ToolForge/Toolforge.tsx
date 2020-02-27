@@ -71,6 +71,9 @@ const Toolforge: React.FunctionComponent<ToolforgeProps> = ({partList}) => {
             }
         </div>
 
+    const traits:string[] = [];
+    selectedParts.forEach(p => p.Traits.forEach(t => {if(traits.indexOf(t) === -1) traits.push(t)}));
+
     const toolInfo =
         <>
             <div className={styles.topInfo}>
@@ -78,7 +81,7 @@ const Toolforge: React.FunctionComponent<ToolforgeProps> = ({partList}) => {
             </div>
             <div className={styles.bottomInfo}>
                 <h2>Traits</h2>
-                Cheap
+                {traits.join(", ")}
 
                 {selectedTool && selectedTool.largePreview(selectedParts)}
             </div>
